@@ -1,0 +1,7 @@
+[package]
+name = "cracking-the-coding-interview"
+version = "0.1.0"
+authors = ["Brenden Matthews <brenden@diddyinc.com>"]
+edition = "2018"
+
+[dependencies]
