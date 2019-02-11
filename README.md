@@ -32,3 +32,9 @@ $ cargo build
 $ cargo test
 ...
 ```
+
+## Tip Jar
+
+If you get some value out of my work and want to see more of it, feel free to send some Satoshis my way:
+
+**BTC**: 3EEAE1oKEMnmHGU5Qxibv9mBQyNnes8j8N
