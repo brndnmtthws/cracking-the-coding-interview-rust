@@ -8,3 +8,5 @@ matrix:
     - rust: nightly
   fast_finish: true
 cache: cargo
+before_cache: |
+  chmod -R a+r $HOME/.cargo
