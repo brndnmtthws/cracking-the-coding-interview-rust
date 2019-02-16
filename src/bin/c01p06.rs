@@ -31,7 +31,10 @@ mod tests {
     #[test]
     fn test_is_one_edit_away() {
         assert_eq!(compress_string("aabcccccaaa"), "a2b1c5a3");
-                assert_eq!(compress_string("ucrxgbaoetibaseuchaoesuntmaemrcuhaoeusaeuch"), "ucrxgbaoetibaseuchaoesuntmaemrcuhaoeusaeuch");
+        assert_eq!(
+            compress_string("ucrxgbaoetibaseuchaoesuntmaemrcuhaoeusaeuch"),
+            "ucrxgbaoetibaseuchaoesuntmaemrcuhaoeusaeuch"
+        );
     }
 }
 
