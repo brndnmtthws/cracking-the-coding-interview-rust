@@ -1,11 +1,10 @@
-#[cfg(test)]
-
 fn is_rotated_string(s1: &str, s2: &str) -> bool {
     let triplet = format!("{}{}{}", s1, s1, s1);
 
     triplet.contains(s2)
 }
 
+#[cfg(test)]
 mod tests {
     use super::*;
 
@@ -17,5 +16,5 @@ mod tests {
 }
 
 fn main() {
-
+   is_rotated_string("waterbottle", "erbottlewat");
 }
