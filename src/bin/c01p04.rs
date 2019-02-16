@@ -49,5 +49,5 @@ mod tests {
 }
 
 fn main() {
-    println!("hello");
+    palidrome_permutations("Tact Coa");
 }
