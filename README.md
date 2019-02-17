@@ -12,6 +12,7 @@ To follow along, you can:
 You can find the existing videos on YouTube below:
 
 - [📽 Chapter 1, problems 1-4](https://youtu.be/MoTEALq5UjI)
+- [📽 Chapter 1, problems 5-9](https://youtu.be/dTp7d7xqqAo)
 
 ## Prerequisites
 
