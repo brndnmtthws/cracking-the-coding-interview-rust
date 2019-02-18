@@ -16,7 +16,7 @@ fn zero_matrix_where_zero(mat: &Mat) -> Mat {
     let mut result = mat.clone();
 
     let x_len = mat.len();
-    for x in 0..mat.len() {
+    for x in 0..x_len {
         let y_len = mat[x].len();
         for y in 0..y_len {
             if mat[x][y] == 0 {
