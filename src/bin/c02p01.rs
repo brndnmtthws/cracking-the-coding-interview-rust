@@ -79,7 +79,7 @@ where
         None
     }
 
-    pub fn iter(&self) -> Iter<T> {
+    fn iter(&self) -> Iter<T> {
         Iter {
             next: self.head.as_ref().cloned(),
         }
