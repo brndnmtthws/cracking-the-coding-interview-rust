@@ -1,7 +1,7 @@
 type Image = Vec<Vec<u32>>;
 
-fn rotate_image_90_degrees(image: &Image) -> Image {
-    let mut rotated_image = image.clone();
+fn rotate_image_90_degrees(image: &[Vec<u32>]) -> Image {
+    let mut rotated_image = image.to_owned();
 
     let x_len = rotated_image.len();
     for x in 0..(x_len / 2) {
@@ -54,5 +54,5 @@ mod tests {
 }
 
 fn main() {
-    rotate_image_90_degrees(&vec![vec![1]]);
+    rotate_image_90_degrees(&[vec![1]]);
 }

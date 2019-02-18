@@ -15,8 +15,8 @@ fn one_char_inserted(s1: &str, s2: &str) -> bool {
     let mut idx1 = 0;
     let mut idx2 = 0;
     while idx1 < s1.len() && idx2 < s2.len() {
-        let char1 = s1.get(idx1..(idx1 + 1)).unwrap();
-        let char2 = s2.get(idx2..(idx2 + 1)).unwrap();
+        let char1 = s1.get(idx1..=idx1).unwrap();
+        let char2 = s2.get(idx2..=idx2).unwrap();
         if char1 == char2 {
             idx2 += 1;
         }
@@ -38,7 +38,7 @@ fn is_one_edit_away(s1: &str, s2: &str) -> bool {
     if s2.len() > s1.len() {
         return one_char_inserted(s2, s1);
     }
-    return one_char_inserted(s1, s2);
+    one_char_inserted(s1, s2)
 }
 
 #[cfg(test)]

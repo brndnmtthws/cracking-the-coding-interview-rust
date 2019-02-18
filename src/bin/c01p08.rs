@@ -1,25 +1,23 @@
 type Mat = Vec<Vec<u32>>;
 
 fn zero_out(mat: &mut Mat, x: usize, y: usize) {
-    // Zero out column
-    for i in 0..mat.len() {
-        mat[i][y] = 0;
+    // Zero out row
+    for row in mat.iter_mut() {
+        row[y] = 0;
     }
 
-    // Zero out row
+    // Zero out column
     for i in 0..mat[x].len() {
         mat[x][i] = 0;
     }
 }
 
-fn zero_matrix_where_zero(mat: &Mat) -> Mat {
-    let mut result = mat.clone();
+fn zero_matrix_where_zero(mat: &[Vec<u32>]) -> Mat {
+    let mut result = mat.to_owned();
 
-    let x_len = mat.len();
-    for x in 0..x_len {
-        let y_len = mat[x].len();
-        for y in 0..y_len {
-            if mat[x][y] == 0 {
+    for (x, row) in mat.iter().enumerate() {
+        for (y, cell) in row.iter().enumerate() {
+            if *cell == 0 {
                 zero_out(&mut result, x, y);
             }
         }
@@ -70,5 +68,5 @@ mod tests {
 }
 
 fn main() {
-    zero_matrix_where_zero(&vec![vec![0]]);
+    zero_matrix_where_zero(&[vec![0]]);
 }

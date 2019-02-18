@@ -8,7 +8,7 @@ fn all_chars_unique_part_a(s: &str) -> bool {
         }
         characters.insert(c);
     }
-    return true;
+    true
 }
 
 fn all_chars_unique_part_b(s: &str) -> bool {
@@ -27,7 +27,7 @@ fn all_chars_unique_part_b(s: &str) -> bool {
         bitfield |= 1 << int_char;
     }
 
-    return true;
+    true
 }
 
 #[cfg(test)]

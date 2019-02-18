@@ -4,14 +4,12 @@ fn compress_string(s: &str) -> String {
         if result.is_empty() {
             result.push(current_char);
             count = 1;
+        } else if result.chars().last().unwrap() == current_char {
+            count += 1;
         } else {
-            if result.chars().last().unwrap() == current_char {
-                count += 1;
-            } else {
-                result.push_str(&format!("{}", count));
-                count = 1;
-                result.push(current_char);
-            }
+            result.push_str(&format!("{}", count));
+            count = 1;
+            result.push(current_char);
         }
 
         result

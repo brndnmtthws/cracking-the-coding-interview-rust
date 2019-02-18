@@ -2,13 +2,8 @@ use std::collections::HashMap;
 fn count_chars(s: &str) -> HashMap<char, i32> {
     let mut characters: HashMap<char, i32> = HashMap::new();
     for c in s.chars() {
-        if characters.contains_key(&c) {
-            if let Some(x) = characters.get_mut(&c) {
-                *x += 1;
-            }
-        } else {
-            characters.insert(c, 1);
-        }
+        let x = characters.entry(c).or_insert(0);
+        *x += 1;
     }
     characters
 }
