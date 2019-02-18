@@ -33,17 +33,17 @@ mod tests {
     #[test]
     fn test_zero_matrix_where_zeros() {
         assert_eq!(
-            zero_matrix_where_zero(&vec![vec![0, 1], vec![1, 1]]),
-            vec![vec![0, 0], vec![0, 1]]
+            zero_matrix_where_zero(&[vec![0, 1], vec![1, 1]]),
+            [vec![0, 0], vec![0, 1]]
         );
         assert_eq!(
-            zero_matrix_where_zero(&vec![
+            zero_matrix_where_zero(&[
                 vec![0, 1, 1, 1],
                 vec![1, 1, 1, 1],
                 vec![1, 1, 1, 1],
                 vec![1, 1, 1, 1],
             ]),
-            vec![
+            [
                 vec![0, 0, 0, 0],
                 vec![0, 1, 1, 1],
                 vec![0, 1, 1, 1],
@@ -51,13 +51,13 @@ mod tests {
             ]
         );
         assert_eq!(
-            zero_matrix_where_zero(&vec![
+            zero_matrix_where_zero(&[
                 vec![1, 1, 1, 1],
                 vec![1, 1, 1, 1],
                 vec![1, 1, 0, 1],
                 vec![1, 1, 1, 1],
             ]),
-            vec![
+            [
                 vec![1, 1, 0, 1],
                 vec![1, 1, 0, 1],
                 vec![0, 0, 0, 0],
