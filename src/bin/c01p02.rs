@@ -10,7 +10,7 @@ fn count_chars(s: &str) -> HashMap<char, i32> {
             characters.insert(c, 1);
         }
     }
-    return characters;
+    characters
 }
 
 fn is_permutation(s1: &str, s2: &str) -> bool {
@@ -30,7 +30,7 @@ fn is_permutation(s1: &str, s2: &str) -> bool {
             return false;
         }
     }
-    return true;
+    true
 }
 
 #[cfg(test)]

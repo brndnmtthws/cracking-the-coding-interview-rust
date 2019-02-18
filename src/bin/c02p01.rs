@@ -23,7 +23,7 @@ struct Iter<T> {
 
 impl<T> Node<T> {
     fn tail(node: &NodeRef<T>) -> Option<NodeRef<T>> {
-        if let Some(cur) = node.borrow().next.as_ref().map(|next| next.clone()) {
+        if let Some(cur) = node.borrow().next.as_ref().cloned() {
             return Node::tail(&cur.clone());
         }
         Some(node.clone())
@@ -57,7 +57,7 @@ where
             tail.borrow_mut().next = Some(Rc::new(RefCell::new(Node {
                 data: new_value,
                 next: None,
-                prev: prev,
+                prev,
             })));
         } else {
             self.head = Some(Rc::new(RefCell::new(Node {
@@ -69,7 +69,7 @@ where
     }
 
     fn tail(&self) -> Option<NodeRef<T>> {
-        if let Some(cur) = self.head.as_ref().map(|head| head.clone()) {
+        if let Some(cur) = self.head.as_ref().cloned() {
             if cur.borrow().next.is_none() {
                 return Some(cur.clone());
             } else {
@@ -81,7 +81,7 @@ where
 
     pub fn iter(&self) -> Iter<T> {
         Iter {
-            next: self.head.as_ref().map(|node| node.clone()),
+            next: self.head.as_ref().cloned(),
         }
     }
 
@@ -121,7 +121,7 @@ impl<'a, T> Iterator for Iter<T> {
     type Item = NodeRef<T>;
 
     fn next(&mut self) -> Option<Self::Item> {
-        if let Some(cur) = self.next.as_ref().map(|next| next.clone()) {
+        if let Some(cur) = self.next.as_ref().cloned() {
             self.next = cur.borrow().next.clone();
             return Some(cur.clone());
         }
@@ -189,4 +189,5 @@ fn main() {
     list.append(String::from("item1"));
     list.append(String::from("item2"));
     list.list_has_duplicates();
+    list.remove_duplicates();
 }
