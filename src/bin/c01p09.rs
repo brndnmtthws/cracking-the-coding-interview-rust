@@ -16,5 +16,5 @@ mod tests {
 }
 
 fn main() {
-   is_rotated_string("waterbottle", "erbottlewat");
+    is_rotated_string("waterbottle", "erbottlewat");
 }
