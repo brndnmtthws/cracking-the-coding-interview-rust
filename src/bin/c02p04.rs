@@ -78,17 +78,6 @@ where
         None
     }
 
-    fn remove(&mut self, node_to_remove: &NodeRef<T>) {
-        for node in self.iter() {
-            let mut borrowed_node = node.borrow_mut();
-            if let Some(next) = borrowed_node.next.as_ref().cloned() {
-                if Rc::ptr_eq(&next, node_to_remove) {
-                    borrowed_node.next = node_to_remove.borrow_mut().next.take()
-                }
-            }
-        }
-    }
-
     fn iter(&self) -> Iter<T> {
         Iter {
             next: self.head.as_ref().cloned(),
@@ -154,7 +143,5 @@ fn main() {
     let mut list = LinkedList::<String>::new();
     list.append(String::from("item1"));
     list.append(String::from("item2"));
-    for node in list.iter() {
-        list.remove(&node.clone());
-    }
+    let _list_partitioned = list.partition("hi".to_string());
 }

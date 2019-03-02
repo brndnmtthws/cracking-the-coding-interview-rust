@@ -67,16 +67,14 @@ where
         }
     }
 
-    fn kth_to_last(&self, k: i32) -> Option<NodeRef<T>> {
-        let mut c = 0;
+    fn kth_to_last(&self, k: usize) -> Option<NodeRef<T>> {
         let mut kth_to_last_node: Option<NodeRef<T>> = None;
-        for _ in self.iter() {
+        for (c, _) in self.iter().enumerate() {
             if c == k {
                 kth_to_last_node = self.head.as_ref().cloned();
             } else if c > k {
                 kth_to_last_node = kth_to_last_node.unwrap().borrow().next.as_ref().cloned();
             }
-            c += 1;
         }
         kth_to_last_node
     }
