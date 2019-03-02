@@ -16,6 +16,7 @@ You can find the existing videos on YouTube below:
 - [📽 Chapter 2, problem 1 (part 1)](https://youtu.be/zLuGFOLDA4Q)
 - [📽 Chapter 2, problem 1 (part 2)](https://youtu.be/uAV5H1SiPVE)
 - [📽 Chapter 2, problems 1-3](https://youtu.be/SdsgfnwPNT4)
+- [📽 Chapter 2, problems 4-6](https://youtu.be/V5ngI_V_kI8?t=749)
 
 
 ## Prerequisites
