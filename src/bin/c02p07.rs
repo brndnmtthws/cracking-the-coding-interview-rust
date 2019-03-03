@@ -123,13 +123,13 @@ mod tests {
         ];
 
         let mut intersecting_first = LinkedList::<i32>::new();
-        for value in 0..3 {
-            intersecting_first.append(datavec[value].clone());
+        for value in datavec.iter().take(3) {
+            intersecting_first.append(value.clone());
         }
 
         let mut intersecting_second = LinkedList::<i32>::new();
-        for value in 2..5 {
-            intersecting_second.append(datavec[value].clone());
+        for value in datavec.iter().take(5).skip(2) {
+            intersecting_second.append(value.clone());
         }
 
         assert_eq!(
@@ -138,13 +138,13 @@ mod tests {
         );
 
         let mut nonintersecting_first = LinkedList::<i32>::new();
-        for value in 0..3 {
-            nonintersecting_first.append(datavec[value].clone());
+        for value in datavec.iter().take(3) {
+            nonintersecting_first.append(value.clone());
         }
 
         let mut nonintersecting_second = LinkedList::<i32>::new();
-        for value in 3..5 {
-            nonintersecting_second.append(datavec[value].clone());
+        for value in datavec.iter().take(2).skip(3) {
+            nonintersecting_second.append(value.clone());
         }
 
         assert_eq!(
