@@ -1,7 +1,7 @@
 #[derive(Debug)]
 struct Stack<T> {
     arr: Vec<T>,
-    min: Option<T>,
+    min: Vec<T>,
 }
 
 impl<T> Stack<T>
@@ -13,17 +13,21 @@ where
     fn new() -> Self {
         Stack {
             arr: Vec::<T>::new(),
-            min: None,
+            min: Vec::<T>::new(),
         }
     }
 
     fn min(&self) -> Option<&T> {
-        self.min.as_ref()
+        if self.min.is_empty() {
+            None
+        } else {
+            self.min.last()
+        }
     }
 
     fn push(&mut self, value: T) {
-        if self.min.is_none() || value < *self.min.as_ref().unwrap() {
-            self.min = Some(value.clone());
+        if self.min.is_empty() || (!self.min.is_empty() && value <= *self.min.last().unwrap()) {
+            self.min.push(value.clone());
         }
         self.arr.push(value.clone());
     }
@@ -31,14 +35,9 @@ where
     fn pop(&mut self) -> Option<T> {
         let result = self.arr.pop();
         if self.arr.is_empty() {
-            self.min = None
-        } else {
-            self.min = Some(self.arr.first().unwrap().clone());
-            for value in self.arr.iter().skip(1) {
-                if value < self.min.as_ref().unwrap() {
-                    self.min = Some(value.clone());
-                }
-            }
+            self.min.clear();
+        } else if result.is_some() && self.min.last().unwrap() == result.as_ref().unwrap() {
+            self.min.pop();
         }
         result
     }
