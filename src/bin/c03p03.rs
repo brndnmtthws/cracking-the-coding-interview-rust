@@ -41,7 +41,7 @@ where
     fn pop_at(&mut self, index: usize) -> Option<T> {
         if index < self.arr.len() {
             if let Some(a) = self.arr.get_mut(index) {
-                let ret =a.pop();
+                let ret = a.pop();
                 if self.arr[index].is_empty() {
                     self.arr.remove(index);
                 }
@@ -75,7 +75,9 @@ mod tests {
         let pop_at_res = set_of_stacks.pop_at(0).unwrap();
         assert_eq!(pop_at_res, 9);
         for i in (0..20).rev() {
-            if i == 9 { continue; }
+            if i == 9 {
+                continue;
+            }
             let res = set_of_stacks.pop().unwrap();
             assert_eq!(i, res);
         }
