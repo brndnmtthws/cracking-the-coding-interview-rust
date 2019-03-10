@@ -18,15 +18,15 @@ impl<T> Graph<T> {
         Self { head: None }
     }
 
-    fn add_vertex(&mut self, value: T, parent_vertexes: &[VertexRef<T>]) -> VertexRef<T> {
+    fn add_vertex(&mut self, value: T, parent_vertices: &[VertexRef<T>]) -> VertexRef<T> {
         let ret = Rc::new(RefCell::new(Vertex {
             data: value,
             edges: Vec::<VertexRef<T>>::new(),
         }));
-        if parent_vertexes.is_empty() {
+        if parent_vertices.is_empty() {
             self.head = Some(ret.clone());
         } else {
-            for parent in parent_vertexes {
+            for parent in parent_vertices {
                 parent.borrow_mut().edges.push(ret.clone());
             }
         }
@@ -93,7 +93,6 @@ mod tests {
         let first = graph.add_vertex(1, &[]);
         let second = graph.add_vertex(2, &[first.clone()]);
         let third = graph.add_vertex(3, &[first.clone(), second.clone()]);
-        println!("graph: {}", graph);
 
         assert_eq!(graph.has_path(first.clone(), third.clone()), true);
         assert_eq!(graph.has_path(third.clone(), first.clone()), false);
