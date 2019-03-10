@@ -49,6 +49,6 @@ mod tests {
 }
 
 fn main() {
-    println!("{}", all_chars_unique_part_a(&String::from("helloworld")));
-    println!("{}", all_chars_unique_part_b(&String::from("helloworld")));
+    all_chars_unique_part_a(&String::from("helloworld"));
+    all_chars_unique_part_b(&String::from("helloworld"));
 }

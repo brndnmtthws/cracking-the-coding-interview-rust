@@ -46,8 +46,5 @@ mod tests {
 }
 
 fn main() {
-    println!(
-        "Hello, world! {}",
-        is_permutation(&String::from("cat"), &String::from("dog"))
-    );
+    is_permutation(&String::from("cat"), &String::from("dog"));
 }

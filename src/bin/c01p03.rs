@@ -21,5 +21,5 @@ mod tests {
 }
 
 fn main() {
-    println!("{}", urlify(&"Mr John Smith    "));
+    urlify(&"Mr John Smith    ");
 }
