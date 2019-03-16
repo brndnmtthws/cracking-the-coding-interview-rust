@@ -20,7 +20,7 @@ You can find the existing videos on YouTube below:
 - [📽 Chapter 2, problems 7-8, Chapter 3, problems 1-2](https://youtu.be/sC9HMy5Tilw)
 - [📽 Chapter 3, problems 3-6](https://youtu.be/JRWVesPoIbQ)
 - [📽 Chapter 4, problems 1-3](https://youtu.be/EUJAy5_At6o)
-
+- [📽 Chapter 4, problems 4-9](https://youtu.be/Q-Z_B9sZHYc)
 
 ## Prerequisites
 
