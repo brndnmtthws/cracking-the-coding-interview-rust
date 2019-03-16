@@ -174,4 +174,5 @@ fn main() {
     let arr: Vec<i32> = (0..10).collect();
     binary_tree.add_vector(&arr);
     binary_tree.height();
+    binary_tree.check_balanced();
 }
