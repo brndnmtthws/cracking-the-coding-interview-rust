@@ -22,4 +22,5 @@ mod tests {
 }
 
 fn main() {
+    float_bits_to_str(0.72);
 }
