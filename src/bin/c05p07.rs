@@ -20,6 +20,6 @@ mod tests {
 
 fn main() {
     let mut a = 0b110;
-        let mut b = 0b001;
-        bitwise_swap(&mut a, &mut b);
+    let mut b = 0b001;
+    bitwise_swap(&mut a, &mut b);
 }
