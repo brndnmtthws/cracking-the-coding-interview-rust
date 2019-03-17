@@ -139,4 +139,5 @@ fn main() {
     t1.insert(2);
     t1.insert(1);
     t1.insert(3);
+    t1.paths_with_sum(1);
 }
