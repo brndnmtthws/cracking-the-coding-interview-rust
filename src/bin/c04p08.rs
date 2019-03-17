@@ -110,7 +110,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_find_path() {
+    fn test_common_ancestor() {
         let mut graph = Graph::<char>::new();
         let c_vertex = graph.add_vertex('c', &[]);
         let d_vertex = graph.add_vertex('d', &[c_vertex.clone()]);

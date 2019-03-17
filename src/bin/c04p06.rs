@@ -136,7 +136,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_check_balanced() {
+    fn test_find_successor() {
         let mut balanced_binary_tree = BinaryTree::<i32>::new();
         let arr: Vec<i32> = (0..10).collect();
         balanced_binary_tree.add_vector(&arr);

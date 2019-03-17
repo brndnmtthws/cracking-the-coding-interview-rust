@@ -88,7 +88,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_find_path() {
+    fn test_route_between_nodes() {
         let mut graph = Graph::<i32>::new();
         let first = graph.add_vertex(1, &[]);
         let second = graph.add_vertex(2, &[first.clone()]);

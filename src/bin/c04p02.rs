@@ -132,7 +132,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_find_path() {
+    fn test_minimal_tree() {
         let mut binary_tree = BinaryTree::<i32>::new();
         let arr: Vec<i32> = (0..10).collect();
         binary_tree.add_vector(&arr);

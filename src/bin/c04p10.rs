@@ -157,7 +157,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_get_bst_sequences() {
+    fn test_is_subtree() {
         let mut t1 = BinaryTree::<i32>::new();
         t1.insert(2);
         t1.insert(1);
