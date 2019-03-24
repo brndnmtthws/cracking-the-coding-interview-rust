@@ -69,16 +69,14 @@ mod tests {
         assert_eq!(book.author, "Dr. Suess");
         assert_eq!(
             online_reader
-                .libraries
-                .get(&user)
-                .unwrap()
+                .libraries[&user]
                 .books
                 .first()
                 .unwrap()
                 .title,
             "Green Eggs and Ham"
         );
-        assert_eq!(online_reader.libraries.get(&user).unwrap().books.len(), 1);
+        assert_eq!(online_reader.libraries[&user].books.len(), 1);
         assert_eq!(online_reader.libraries.len(), 1);
     }
 }
