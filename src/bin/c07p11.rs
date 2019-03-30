@@ -80,12 +80,12 @@ mod tests {
     fn test_filesystem() {
         let mut fs = Filesystem::new();
         let derp = fs.root.add_directory("derp");
-        let  _file = derp.borrow_mut().add_file("herp", vec![0; 5]);
+        let _file = derp.borrow_mut().add_file("herp", vec![0; 5]);
     }
 }
 
 fn main() {
-            let mut fs = Filesystem::new();
-        let  derp = fs.root.add_directory("derp");
-        let  _file = derp.borrow_mut().add_file("herp", vec![0; 5]);
+    let mut fs = Filesystem::new();
+    let derp = fs.root.add_directory("derp");
+    let _file = derp.borrow_mut().add_file("herp", vec![0; 5]);
 }
