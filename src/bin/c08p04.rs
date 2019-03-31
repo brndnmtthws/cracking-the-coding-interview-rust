@@ -39,4 +39,6 @@ mod tests {
     }
 }
 
-fn main() {}
+fn main() {
+    power_set(&[0, 1, 2]);
+}
