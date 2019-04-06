@@ -46,4 +46,6 @@ mod tests {
     }
 }
 
-fn main() {}
+fn main() {
+    get_parens(3);
+}
