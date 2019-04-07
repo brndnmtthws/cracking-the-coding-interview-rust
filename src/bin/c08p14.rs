@@ -12,7 +12,6 @@ fn count_eval(s: &str, result: bool) -> u64 {
         for (i, c) in s.char_indices().skip(1).step_by(2) {
             let left = &s[..i];
             let right = &s[(i + 1)..];
-            println!("i:{} left:{} right:{}", i, left, right);
 
             let left_true = count_eval(left, true);
             let left_false = count_eval(left, false);
@@ -30,7 +29,6 @@ fn count_eval(s: &str, result: bool) -> u64 {
             } else {
                 0
             };
-            println!("total_true:{} ways:{} total:{}", total_true, ways, total);
 
             ways += if result {
                 total_true
