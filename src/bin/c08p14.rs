@@ -12,7 +12,7 @@ fn count_eval(s: &str, result: bool) -> u64 {
         for (i, c) in s.char_indices().skip(1).step_by(2) {
             let left = &s[..i];
             let right = &s[(i + 1)..];
-            println!("i:{} left:{} right:{}", i,left, right);
+            println!("i:{} left:{} right:{}", i, left, right);
 
             let left_true = count_eval(left, true);
             let left_false = count_eval(left, false);
@@ -53,4 +53,6 @@ mod tests {
     }
 }
 
-fn main() {}
+fn main() {
+    count_eval("1^0|0|1", false);
+}
