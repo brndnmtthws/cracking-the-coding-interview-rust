@@ -30,6 +30,9 @@ You can find the existing videos on YouTube below:
 - [📽 Chapter 7, problems 10-11](https://youtu.be/P_KrbWKabeA)
 - [📽 Chapter 7, problem 12, Chapter 8, problems 1-4](https://youtu.be/W209V_dqakM)
 - [📽 Chapter 8, problems 5-11](https://youtu.be/L6GqbfKwldg)
+- [📽 Chapter 8, problems 12-14 (part 1)](https://youtu.be/5axLcIOVnbE)
+- [📽 Chapter 8, problems 12-14 (part 2)](https://youtu.be/jV5BFjVGftI)
+- [📽 Chapter 8, problems 12-14 (part 3)](https://youtu.be/A8pNIwpZdoU)
 
 ## Prerequisites
 
