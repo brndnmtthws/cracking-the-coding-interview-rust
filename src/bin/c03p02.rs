@@ -6,9 +6,7 @@ struct Stack<T> {
 
 impl<T> Stack<T>
 where
-    T: std::cmp::PartialEq,
-    T: std::cmp::PartialOrd,
-    T: std::clone::Clone,
+    T: std::cmp::PartialEq + std::cmp::PartialOrd + std::clone::Clone,
 {
     fn new() -> Self {
         Stack {

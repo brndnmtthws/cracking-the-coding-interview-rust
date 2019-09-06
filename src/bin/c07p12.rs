@@ -21,9 +21,7 @@ fn calculate_hash<T: Hash>(t: &T) -> u64 {
 
 impl<K, V> HashTable<K, V>
 where
-    K: std::hash::Hash,
-    K: std::cmp::PartialEq,
-    K: std::clone::Clone,
+    K: std::hash::Hash + std::cmp::PartialEq + std::clone::Clone,
     V: std::clone::Clone,
 {
     fn new(capacity: usize) -> Self {

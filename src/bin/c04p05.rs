@@ -17,9 +17,7 @@ struct Node<T> {
 
 impl<T> BinaryTree<T>
 where
-    T: std::cmp::PartialEq,
-    T: std::cmp::PartialOrd,
-    T: std::marker::Copy,
+    T: std::cmp::PartialEq + std::cmp::PartialOrd + std::marker::Copy,
 {
     fn new() -> Self {
         Self { head: None }
@@ -122,9 +120,7 @@ where
 
 impl<T: Display> Display for BinaryTree<T>
 where
-    T: std::cmp::PartialEq,
-    T: std::cmp::PartialOrd,
-    T: std::marker::Copy,
+    T: std::cmp::PartialEq + std::cmp::PartialOrd + std::marker::Copy,
 {
     fn fmt(&self, w: &mut std::fmt::Formatter) -> std::result::Result<(), std::fmt::Error> {
         write!(w, "[")?;

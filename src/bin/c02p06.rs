@@ -22,11 +22,7 @@ struct Iter<T> {
 
 impl<T> LinkedList<T>
 where
-    T: std::cmp::Eq,
-    T: std::hash::Hash,
-    T: std::clone::Clone,
-    T: std::cmp::PartialOrd,
-    T: std::fmt::Debug,
+    T: std::cmp::Eq + std::hash::Hash + std::clone::Clone + std::cmp::PartialOrd + std::fmt::Debug,
 {
     fn new() -> Self {
         Self {
