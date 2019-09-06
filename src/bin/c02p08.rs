@@ -28,7 +28,11 @@ impl<T> Node<T> {
 
 impl<T> LinkedList<T>
 where
-    T: std::cmp::Eq + std::hash::Hash + std::clone::Clone + std::cmp::PartialOrd + std::cmp::PartialEq,
+    T: std::cmp::Eq
+        + std::hash::Hash
+        + std::clone::Clone
+        + std::cmp::PartialOrd
+        + std::cmp::PartialEq,
 {
     fn new() -> Self {
         Self { head: None }
