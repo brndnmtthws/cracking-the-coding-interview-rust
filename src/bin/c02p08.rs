@@ -174,7 +174,6 @@ mod tests {
         assert_eq!(cycle_result2.is_some(), true);
         assert_eq!(cycle_result2.as_ref().unwrap().borrow().data, 'C');
     }
-
 }
 
 fn main() {

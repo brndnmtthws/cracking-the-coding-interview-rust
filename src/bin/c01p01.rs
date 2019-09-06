@@ -45,7 +45,6 @@ mod tests {
         assert_eq!(all_chars_unique_part_b(&String::from("abcdefg")), true);
         assert_eq!(all_chars_unique_part_b(&String::from("abcdefga")), false);
     }
-
 }
 
 fn main() {

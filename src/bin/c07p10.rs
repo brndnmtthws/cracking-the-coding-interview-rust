@@ -194,5 +194,5 @@ fn main() {
     board.flag_square(0, 1);
     println!("{}", board);
     board.expose_square(3, 4);
-    println!("{}", board);;
+    println!("{}", board);
 }

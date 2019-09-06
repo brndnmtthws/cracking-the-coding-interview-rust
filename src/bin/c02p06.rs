@@ -185,7 +185,6 @@ mod tests {
         list4.append(2);
         assert_eq!(list4.is_palindrome(), false);
     }
-
 }
 
 fn main() {
