@@ -124,7 +124,6 @@ impl Board {
         self.visit_adjacent_squares(x, y, |square, xi, yj| {
             if x == xi && y == yj {
                 // skip this square
-                return;
             } else if !square.is_mine && square.state != SquareState::Exposed {
                 expose_these.push((xi, yj));
             }
