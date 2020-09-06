@@ -20,7 +20,7 @@ where
             self.arr.push(Vec::<T>::with_capacity(self.capacity));
         }
         if let Some(a) = self.arr.last_mut() {
-            a.push(value.clone());
+            a.push(value);
         }
     }
 
