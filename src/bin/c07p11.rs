@@ -32,7 +32,7 @@ impl INode {
             data,
         }));
         self.children.push(file.clone());
-        file.clone()
+        file
     }
     fn add_directory(&mut self, name: &str) -> Rc<RefCell<INode>> {
         let dir = Rc::new(RefCell::new(INode {
@@ -46,7 +46,7 @@ impl INode {
             data: vec![],
         }));
         self.children.push(dir.clone());
-        dir.clone()
+        dir
     }
 }
 
