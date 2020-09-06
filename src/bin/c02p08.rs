@@ -55,7 +55,7 @@ where
     fn tail(&self) -> Option<NodeRef<T>> {
         if let Some(cur) = self.head.as_ref().cloned() {
             if cur.borrow().next.is_none() {
-                return Some(cur.clone());
+                return Some(cur);
             } else {
                 return Node::tail(&cur.clone());
             }
@@ -80,7 +80,7 @@ where
         while hare.is_some() && tortoise.is_some() {
             if Rc::ptr_eq(hare.as_ref().unwrap(), tortoise.as_ref().unwrap()) {
                 if Rc::ptr_eq(&prev_tortoise, &prev_hare) {
-                    return Some(prev_tortoise.clone());
+                    return Some(prev_tortoise);
                 } else {
                     return Some(hare.as_ref().unwrap().clone());
                 }
@@ -104,7 +104,7 @@ impl<'a, T> Iterator for Iter<T> {
         self.next.as_ref()?;
         if let Some(cur) = self.next.as_ref().cloned() {
             self.next = cur.borrow().next.clone();
-            return Some(cur.clone());
+            return Some(cur);
         }
         None
     }
@@ -142,7 +142,7 @@ mod tests {
         list_iter.next();
         list_iter.next();
         let third_node = list_iter.next();
-        cycle_list.tail().unwrap().borrow_mut().next = Some(third_node.unwrap().clone());
+        cycle_list.tail().unwrap().borrow_mut().next = Some(third_node.unwrap());
 
         let cycle_result = cycle_list.has_cycle();
         assert_eq!(cycle_result.is_some(), true);
@@ -168,7 +168,7 @@ mod tests {
         list_iter2.next();
         list_iter2.next();
         let third_node2 = list_iter2.next();
-        cycle_list2.tail().unwrap().borrow_mut().next = Some(third_node2.unwrap().clone());
+        cycle_list2.tail().unwrap().borrow_mut().next = Some(third_node2.unwrap());
 
         let cycle_result2 = cycle_list2.has_cycle();
         assert_eq!(cycle_result2.is_some(), true);

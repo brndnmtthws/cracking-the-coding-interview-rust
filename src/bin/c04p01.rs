@@ -95,7 +95,7 @@ mod tests {
         let third = graph.add_vertex(3, &[first.clone(), second.clone()]);
 
         assert_eq!(graph.has_path(first.clone(), third.clone()), true);
-        assert_eq!(graph.has_path(third.clone(), first.clone()), false);
+        assert_eq!(graph.has_path(third, first), false);
     }
 }
 
@@ -103,5 +103,5 @@ fn main() {
     let mut graph = Graph::<i32>::new();
     let first = graph.add_vertex(1, &[]);
     let second = graph.add_vertex(2, &[]);
-    graph.has_path(first.clone(), second.clone());
+    graph.has_path(first, second);
 }

@@ -66,12 +66,16 @@ where
     }
 
     fn kth_to_last(&self, k: usize) -> Option<NodeRef<T>> {
+        use std::cmp::Ordering;
+
         let mut kth_to_last_node: Option<NodeRef<T>> = None;
         for (c, _) in self.iter().enumerate() {
-            if c == k {
-                kth_to_last_node = self.head.as_ref().cloned();
-            } else if c > k {
-                kth_to_last_node = kth_to_last_node.unwrap().borrow().next.as_ref().cloned();
+            match k.cmp(&c) {
+                Ordering::Equal => kth_to_last_node = self.head.as_ref().cloned(),
+                Ordering::Less => {
+                    kth_to_last_node = kth_to_last_node.unwrap().borrow().next.as_ref().cloned()
+                }
+                _ => (),
             }
         }
         kth_to_last_node

@@ -81,7 +81,7 @@ impl<'a, T> Iterator for Iter<T> {
             if Rc::ptr_eq(&cur, self.prev.as_ref().unwrap()) {
                 return None;
             }
-            return Some(cur.clone());
+            return Some(cur);
         }
         None
     }
@@ -94,7 +94,7 @@ impl<'a, T> DoubleEndedIterator for Iter<T> {
             if Rc::ptr_eq(self.next.as_ref().unwrap(), &cur) {
                 return None;
             }
-            return Some(cur.clone());
+            return Some(cur);
         }
         None
     }

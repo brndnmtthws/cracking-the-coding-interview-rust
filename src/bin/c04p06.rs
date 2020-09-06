@@ -34,7 +34,7 @@ where
             ret
         } else {
             let mut head = self.head.as_mut().unwrap().clone();
-            self.insert_at(&mut head, ret.clone())
+            self.insert_at(&mut head, ret)
         }
     }
 
@@ -98,7 +98,7 @@ where
         if let Some(left) = node.borrow().left.as_ref() {
             self.dfs_from(f, left.clone());
         }
-        f(&node.clone());
+        f(&node);
         if let Some(right) = node.borrow().right.as_ref() {
             self.dfs_from(f, right.clone());
         }

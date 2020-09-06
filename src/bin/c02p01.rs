@@ -69,9 +69,9 @@ where
     fn tail(&self) -> Option<NodeRef<T>> {
         if let Some(cur) = self.head.as_ref().cloned() {
             if cur.borrow().next.is_none() {
-                return Some(cur.clone());
+                return Some(cur);
             } else {
-                return Node::tail(&cur.clone());
+                return Node::tail(&cur);
             }
         }
         None
@@ -121,7 +121,7 @@ impl<'a, T> Iterator for Iter<T> {
     fn next(&mut self) -> Option<Self::Item> {
         if let Some(cur) = self.next.as_ref().cloned() {
             self.next = cur.borrow().next.clone();
-            return Some(cur.clone());
+            return Some(cur);
         }
         None
     }

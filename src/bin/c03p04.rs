@@ -14,7 +14,7 @@ where
     }
 
     fn add(&mut self, value: T) {
-        self.arr.push(value.clone());
+        self.arr.push(value);
     }
 
     fn remove(&mut self) -> Option<T> {
