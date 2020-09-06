@@ -33,7 +33,7 @@ impl BinaryTree {
             ret
         } else {
             let mut head = self.head.as_mut().unwrap().clone();
-            self.insert_at(&mut head, ret.clone())
+            self.insert_at(&mut head, ret)
         }
     }
 
