@@ -42,7 +42,7 @@ impl<T> Graph<T> {
         for v in vertex.borrow().edges.iter() {
             self.dfs_from(f, v.clone());
         }
-        f(&vertex.clone());
+        f(&vertex);
     }
 
     fn dfs<F>(&self, mut f: F)
@@ -113,7 +113,7 @@ mod tests {
     fn test_common_ancestor() {
         let mut graph = Graph::<char>::new();
         let c_vertex = graph.add_vertex('c', &[]);
-        let d_vertex = graph.add_vertex('d', &[c_vertex.clone()]);
+        let d_vertex = graph.add_vertex('d', &[c_vertex]);
         let a_vertex = graph.add_vertex('a', &[d_vertex.clone()]);
         let b_vertex = graph.add_vertex('b', &[d_vertex.clone()]);
         let _f_vertex = graph.add_vertex('f', &[a_vertex.clone(), b_vertex.clone()]);

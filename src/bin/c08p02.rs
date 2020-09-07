@@ -1,3 +1,5 @@
+#![allow(clippy::same_item_push)]
+
 #[derive(Clone, Copy, Debug, PartialEq)]
 struct Location {
     x: usize,

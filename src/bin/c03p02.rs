@@ -27,7 +27,7 @@ where
         if self.min.is_empty() || (!self.min.is_empty() && value <= *self.min.last().unwrap()) {
             self.min.push(value.clone());
         }
-        self.arr.push(value.clone());
+        self.arr.push(value);
     }
 
     fn pop(&mut self) -> Option<T> {

@@ -42,7 +42,7 @@ impl<T> Graph<T> {
                 return false;
             }
         }
-        f(&vertex.clone())
+        f(&vertex)
     }
 
     fn dfs<F>(&self, mut f: F)
@@ -66,7 +66,7 @@ impl<T> Graph<T> {
                     true
                 }
             },
-            from.clone(),
+            from,
         );
         found_path
     }
@@ -92,7 +92,7 @@ mod tests {
         let mut graph = Graph::<i32>::new();
         let first = graph.add_vertex(1, &[]);
         let second = graph.add_vertex(2, &[first.clone()]);
-        let third = graph.add_vertex(3, &[first.clone(), second.clone()]);
+        let third = graph.add_vertex(3, &[first.clone(), second]);
 
         assert_eq!(graph.has_path(first.clone(), third.clone()), true);
         assert_eq!(graph.has_path(third, first), false);

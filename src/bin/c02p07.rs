@@ -21,7 +21,7 @@ struct Iter<T> {
 impl<T> Node<T> {
     fn tail(node: &NodeRef<T>) -> Option<NodeRef<T>> {
         if let Some(cur) = node.borrow().next.as_ref().cloned() {
-            return Node::tail(&cur.clone());
+            return Node::tail(&cur);
         }
         Some(node.clone())
     }
@@ -38,12 +38,12 @@ where
     fn append(&mut self, new_value: DataRef<T>) {
         if let Some(tail) = self.tail() {
             tail.borrow_mut().next = Some(Rc::new(RefCell::new(Node {
-                data: new_value.clone(),
+                data: new_value,
                 next: None,
             })));
         } else {
             self.head = Some(Rc::new(RefCell::new(Node {
-                data: new_value.clone(),
+                data: new_value,
                 next: None,
             })));
         }
@@ -52,9 +52,9 @@ where
     fn tail(&self) -> Option<NodeRef<T>> {
         if let Some(cur) = self.head.as_ref().cloned() {
             if cur.borrow().next.is_none() {
-                return Some(cur.clone());
+                return Some(cur);
             } else {
-                return Node::tail(&cur.clone());
+                return Node::tail(&cur);
             }
         }
         None
@@ -84,7 +84,7 @@ impl<'a, T> Iterator for Iter<T> {
     fn next(&mut self) -> Option<Self::Item> {
         if let Some(cur) = self.next.as_ref().cloned() {
             self.next = cur.borrow().next.clone();
-            return Some(cur.clone());
+            return Some(cur);
         }
         None
     }

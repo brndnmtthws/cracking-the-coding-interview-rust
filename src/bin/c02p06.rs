@@ -39,7 +39,7 @@ where
                 prev: Some(tail.clone()),
             }));
             tail.borrow_mut().next = Some(new_node.clone());
-            self.tail = Some(new_node.clone());
+            self.tail = Some(new_node);
         } else {
             self.head = Some(Rc::new(RefCell::new(Node {
                 data: new_value,

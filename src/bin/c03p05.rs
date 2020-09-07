@@ -15,13 +15,13 @@ where
 
     fn push(&mut self, value: T) {
         if self.arr.is_empty() || value <= *self.arr.last().unwrap() {
-            self.arr.push(value.clone());
+            self.arr.push(value);
         } else {
             let mut tmp = Vec::<T>::new();
             while !self.arr.is_empty() && self.arr.last().unwrap() < &value {
                 tmp.push(self.arr.pop().unwrap());
             }
-            self.arr.push(value.clone());
+            self.arr.push(value);
             while !tmp.is_empty() {
                 self.arr.push(tmp.pop().unwrap());
             }

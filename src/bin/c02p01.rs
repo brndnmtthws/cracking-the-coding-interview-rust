@@ -24,7 +24,7 @@ struct Iter<T> {
 impl<T> Node<T> {
     fn tail(node: &NodeRef<T>) -> Option<NodeRef<T>> {
         if let Some(cur) = node.borrow().next.as_ref().cloned() {
-            return Node::tail(&cur.clone());
+            return Node::tail(&cur);
         }
         Some(node.clone())
     }
