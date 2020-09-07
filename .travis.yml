@@ -6,6 +6,7 @@ rust:
 matrix:
   allow_failures:
     - rust: nightly
+    - rust: beta
   fast_finish: true
   include:
     - env: TARGET=x86_64-unknown-linux-gnu
