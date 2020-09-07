@@ -1,4 +1,4 @@
-#![warn(clippy::pedantic)]
+#![warn(clippy::style)]
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 struct Location {
