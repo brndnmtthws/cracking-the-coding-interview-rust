@@ -1,4 +1,4 @@
-#![allow(clippy::same_item_push)]
+#![warn(clippy::pedantic)]
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 struct Location {
