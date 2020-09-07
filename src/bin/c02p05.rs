@@ -53,7 +53,7 @@ where
             if cur.borrow().next.is_none() {
                 return Some(cur);
             } else {
-                return Node::tail(&cur.clone());
+                return Node::tail(&cur);
             }
         }
         None
