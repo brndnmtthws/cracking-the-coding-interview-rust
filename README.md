@@ -7,7 +7,7 @@ This repository contains code for my YouTube programming interview practice & le
 To follow along, you can:
 
 - [📹 Subscribe to my YouTube channel](https://www.youtube.com/c/BrendenMatthews/live), or
-- [🎮 Follow me on Twitch](https://www.twitch.tv/brndnmtthws)
+- [🎮 Follow me on Twitch](https://www.twitch.tv/letsmakestuff)
 
 You can find the existing videos on YouTube below:
 
