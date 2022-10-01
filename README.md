@@ -1,4 +1,4 @@
-![Build status](https://github.com/brndnmtthws/cracking-the-coding-interview-rust/actions/workflows/build-and-test.yml/badge.svg) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=brndnmtthws/cracking-the-coding-interview-rust)](https://dependabot.com) [![Coverage Status](https://coveralls.io/repos/github/brndnmtthws/cracking-the-coding-interview-rust/badge.svg?branch=master)](https://coveralls.io/github/brndnmtthws/cracking-the-coding-interview-rust?branch=master)
+[![Build status](https://github.com/brndnmtthws/cracking-the-coding-interview-rust/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/brndnmtthws/cracking-the-coding-interview-rust/actions/workflows/build-and-test.yml) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=brndnmtthws/cracking-the-coding-interview-rust)](https://dependabot.com) [![Coverage Status](https://coveralls.io/repos/github/brndnmtthws/cracking-the-coding-interview-rust/badge.svg?branch=master)](https://coveralls.io/github/brndnmtthws/cracking-the-coding-interview-rust?branch=master)
 
 # Cracking the Coding Interview with Rust
 
