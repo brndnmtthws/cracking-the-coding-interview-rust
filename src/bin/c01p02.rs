@@ -13,15 +13,15 @@ fn is_permutation(s1: &str, s2: &str) -> bool {
     let characters_2 = count_chars(s2);
 
     for key in characters_1.keys() {
-        if !characters_2.contains_key(&key) {
+        if !characters_2.contains_key(key) {
             return false;
         }
-        if characters_1.get(&key) != characters_2.get(&key) {
+        if characters_1.get(key) != characters_2.get(key) {
             return false;
         }
     }
     for key in characters_2.keys() {
-        if !characters_1.contains_key(&key) {
+        if !characters_1.contains_key(key) {
             return false;
         }
     }

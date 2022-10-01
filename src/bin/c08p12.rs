@@ -6,7 +6,7 @@ fn check_valid(columns: &mut Vec<usize>, row1: usize, column1: usize) -> bool {
             return false;
         }
 
-        let column_distance = ((*column2 as i64) - (column1 as i64)).abs() as usize;
+        let column_distance = ((*column2 as i64) - (column1 as i64)).unsigned_abs() as usize;
 
         let row_distance = row1 - row2;
         if column_distance == row_distance {

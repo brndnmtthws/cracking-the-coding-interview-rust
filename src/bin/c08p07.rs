@@ -41,10 +41,10 @@ mod tests {
     fn test_permutations_without_dups() {
         let s1 = "abc";
         let permutations = vec!["abc", "bac", "bca", "acb", "cab", "cba"];
-        assert_eq!(permutations_without_dups(&s1), permutations);
+        assert_eq!(permutations_without_dups(s1), permutations);
 
         let s2 = "abcdefg";
-        let s2_perms = permutations_without_dups(&s2);
+        let s2_perms = permutations_without_dups(s2);
         let s2_set = hashset(&s2_perms);
         assert_eq!(s2_perms.len(), 5040);
         assert_eq!(s2_perms.len(), s2_set.len());
@@ -53,5 +53,5 @@ mod tests {
 
 fn main() {
     let s1 = "abc";
-    permutations_without_dups(&s1);
+    permutations_without_dups(s1);
 }

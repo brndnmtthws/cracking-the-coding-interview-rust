@@ -34,11 +34,11 @@ mod tests {
     fn test_permutations_with_dups() {
         let s1 = "abb";
         let permutations = vec!["abb", "bab", "bba", "abb", "bab", "bba"];
-        assert_eq!(permutations_with_dups(&s1), permutations);
+        assert_eq!(permutations_with_dups(s1), permutations);
     }
 }
 
 fn main() {
     let s1 = "abc";
-    permutations_with_dups(&s1);
+    permutations_with_dups(s1);
 }

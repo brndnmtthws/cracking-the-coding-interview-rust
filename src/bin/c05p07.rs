@@ -1,7 +1,5 @@
 fn bitwise_swap(a: &mut i32, b: &mut i32) {
-    *a ^= *b;
-    *b ^= *a;
-    *a ^= *b;
+    std::mem::swap(&mut (*a), &mut (*b))
 }
 
 #[cfg(test)]

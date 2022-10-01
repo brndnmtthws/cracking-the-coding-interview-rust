@@ -46,11 +46,7 @@ impl Jukebox {
         if self.queue.is_empty() {
             // pick random song
             let mut rng = thread_rng();
-            if let Some(song) = self.catalogue.choose(&mut rng) {
-                Some(song.clone())
-            } else {
-                None
-            }
+            self.catalogue.choose(&mut rng).cloned()
         } else {
             Some(self.queue.remove(0))
         }

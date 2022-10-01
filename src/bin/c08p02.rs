@@ -1,4 +1,4 @@
-#![allow(clippy::same_item_push, clippy::unknown_clippy_lints)]
+#![allow(clippy::same_item_push, unknown_lints)]
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 struct Location {
