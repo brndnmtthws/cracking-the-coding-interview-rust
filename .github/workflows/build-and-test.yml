@@ -13,9 +13,11 @@ jobs:
         with:
           toolchain: stable
       - uses: actions-rs/cargo@v1
+        name: Cargo test
         with:
           command: test
       - uses: actions-rs/cargo@v1
+        name: Cargo build
         with:
           command: build
           args: --release --all-features
