@@ -59,8 +59,8 @@ mod tests {
         let mut off_limits: Vec<Location> = vec![];
         let mut rng = rand::thread_rng();
         for _ in 0..100 {
-            let x = rng.gen_range(1, 100);
-            let y = rng.gen_range(1, 100);
+            let x = rng.gen_range(1..100);
+            let y = rng.gen_range(1..100);
             off_limits.push(Location { x, y });
         }
         let path = get_path_to(
