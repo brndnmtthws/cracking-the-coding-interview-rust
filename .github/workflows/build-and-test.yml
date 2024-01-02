@@ -1,23 +1,17 @@
 on: [push]
 
 name: CI
-
+env:
+  CARGO_TERM_COLOR: always
 jobs:
   build_and_test:
     name: Rust project
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: Swatinem/rust-cache@v2
-      - uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-      - uses: actions-rs/cargo@v1
-        name: Cargo test
-        with:
-          command: test
-      - uses: actions-rs/cargo@v1
-        name: Cargo build
-        with:
-          command: build
-          args: --release --all-features
+      - name: Setup Rust toolchain with caching
+        uses: brndnmtthws/rust-action@v1
+      - run: cargo build
+      - run: cargo test
+        env:
+          RUST_BACKTRACE: 1
