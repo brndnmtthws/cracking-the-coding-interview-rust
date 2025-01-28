@@ -26,6 +26,11 @@ fn permutations_with_dups(s: &str) -> Vec<String> {
     }
 }
 
+fn main() {
+    let s1 = "abc";
+    permutations_with_dups(s1);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -36,9 +41,4 @@ mod tests {
         let permutations = vec!["abb", "bab", "bba", "abb", "bab", "bba"];
         assert_eq!(permutations_with_dups(s1), permutations);
     }
-}
-
-fn main() {
-    let s1 = "abc";
-    permutations_with_dups(s1);
 }

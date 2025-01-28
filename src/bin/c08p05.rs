@@ -10,6 +10,10 @@ fn recursive_multiply(a: i64, b: i64) -> i64 {
     }
 }
 
+fn main() {
+    recursive_multiply(2, 0);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -32,8 +36,4 @@ mod tests {
         assert_eq!(recursive_multiply(1, 0), 0);
         assert_eq!(recursive_multiply(0, 1), 0);
     }
-}
-
-fn main() {
-    recursive_multiply(2, 0);
 }

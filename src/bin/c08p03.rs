@@ -14,6 +14,10 @@ fn find_magic_index(arr: &[i64]) -> Option<usize> {
     }
 }
 
+fn main() {
+    find_magic_index(&[0, 2, 3, 5]);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -23,8 +27,4 @@ mod tests {
         assert_eq!(find_magic_index(&[0, 2, 3, 5]), Some(0));
         assert_eq!(find_magic_index(&[-10, 2, 3, 5]), None);
     }
-}
-
-fn main() {
-    find_magic_index(&[0, 2, 3, 5]);
 }

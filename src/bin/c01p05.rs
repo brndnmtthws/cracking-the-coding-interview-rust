@@ -41,24 +41,24 @@ fn is_one_edit_away(s1: &str, s2: &str) -> bool {
     one_char_inserted(s1, s2)
 }
 
+fn main() {
+    is_one_edit_away("pale", "ple");
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_is_one_edit_away() {
-        assert_eq!(is_one_edit_away("pale", "pale"), true);
-        assert_eq!(is_one_edit_away("pale", "ple"), true);
-        assert_eq!(is_one_edit_away("pales", "pale"), true);
-        assert_eq!(is_one_edit_away("pale", "bale"), true);
-        assert_eq!(is_one_edit_away("pale", "bake"), false);
+        assert!(is_one_edit_away("pale", "pale"));
+        assert!(is_one_edit_away("pale", "ple"));
+        assert!(is_one_edit_away("pales", "pale"));
+        assert!(is_one_edit_away("pale", "bale"));
+        assert!(!is_one_edit_away("pale", "bake"));
 
-        assert_eq!(is_one_edit_away("pale", "8e9auh"), false);
-        assert_eq!(is_one_edit_away("pale", ""), false);
-        assert_eq!(is_one_edit_away("pale", "pale "), true);
+        assert!(!is_one_edit_away("pale", "8e9auh"));
+        assert!(!is_one_edit_away("pale", ""));
+        assert!(is_one_edit_away("pale", "pale "));
     }
-}
-
-fn main() {
-    is_one_edit_away("pale", "ple");
 }

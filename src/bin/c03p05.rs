@@ -22,8 +22,8 @@ where
                 tmp.push(self.arr.pop().unwrap());
             }
             self.arr.push(value);
-            while !tmp.is_empty() {
-                self.arr.push(tmp.pop().unwrap());
+            while let Some(element) = tmp.pop() {
+                self.arr.push(element);
             }
         }
     }
@@ -31,6 +31,12 @@ where
     fn pop(&mut self) -> Option<T> {
         self.arr.pop()
     }
+}
+
+fn main() {
+    let mut sort_stack: SortStack<i32> = SortStack::new();
+    sort_stack.push(1);
+    sort_stack.pop();
 }
 
 #[cfg(test)]
@@ -47,10 +53,4 @@ mod tests {
             assert_eq!(sort_stack.pop().unwrap(), i);
         }
     }
-}
-
-fn main() {
-    let mut sort_stack: SortStack<i32> = SortStack::new();
-    sort_stack.push(1);
-    sort_stack.pop();
 }

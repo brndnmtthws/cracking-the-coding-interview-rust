@@ -34,38 +34,38 @@ where
             ret
         } else {
             let mut head = self.head.as_mut().unwrap().clone();
-            self.insert_at(&mut head, ret)
+            Self::insert_at(&mut head, ret)
         }
     }
 
-    fn insert_at(&mut self, parent_node: &mut NodeRef<T>, new_node: NodeRef<T>) -> NodeRef<T> {
+    fn insert_at(parent_node: &mut NodeRef<T>, new_node: NodeRef<T>) -> NodeRef<T> {
         if new_node.borrow().data < parent_node.borrow().data {
             if parent_node.borrow().left.is_some() {
                 let mut new_parent = parent_node.borrow_mut().left.as_mut().unwrap().clone();
-                self.insert_at(&mut new_parent, new_node)
+                Self::insert_at(&mut new_parent, new_node)
             } else {
                 parent_node.borrow_mut().left = Some(new_node.clone());
                 new_node
             }
         } else if parent_node.borrow().right.is_some() {
             let mut new_parent = parent_node.borrow_mut().right.as_mut().unwrap().clone();
-            self.insert_at(&mut new_parent, new_node)
+            Self::insert_at(&mut new_parent, new_node)
         } else {
             parent_node.borrow_mut().right = Some(new_node.clone());
             new_node
         }
     }
 
-    fn visit_from<F>(&self, parent_node: &NodeRef<T>, f: &mut F)
+    fn visit_from<F>(parent_node: &NodeRef<T>, f: &mut F)
     where
         F: FnMut(&NodeRef<T>),
     {
         f(parent_node);
         if let Some(left) = parent_node.borrow().left.as_ref() {
-            self.visit_from(left, f);
+            Self::visit_from(left, f);
         }
         if let Some(right) = parent_node.borrow().right.as_ref() {
-            self.visit_from(right, f);
+            Self::visit_from(right, f);
         }
     }
 
@@ -74,17 +74,17 @@ where
         F: FnMut(&NodeRef<T>),
     {
         if self.head.is_some() {
-            self.visit_from(self.head.as_ref().unwrap(), &mut f)
+            Self::visit_from(self.head.as_ref().unwrap(), &mut f)
         }
     }
 
-    fn trees_equal(&self, head: &NodeRef<T>, other_head: &NodeRef<T>) -> bool {
+    fn trees_equal(head: &NodeRef<T>, other_head: &NodeRef<T>) -> bool {
         if head.borrow().data != other_head.borrow().data {
             return false;
         }
         if let Some(left) = head.borrow().left.as_ref() {
             if let Some(other_left) = other_head.borrow().left.as_ref() {
-                if !self.trees_equal(left, other_left) {
+                if !Self::trees_equal(left, other_left) {
                     return false;
                 }
             } else {
@@ -95,7 +95,7 @@ where
         }
         if let Some(right) = head.borrow().right.as_ref() {
             if let Some(other_right) = other_head.borrow().right.as_ref() {
-                return self.trees_equal(right, other_right);
+                return Self::trees_equal(right, other_right);
             } else {
                 return false;
             }
@@ -105,7 +105,7 @@ where
         true
     }
 
-    fn find_head<F>(&self, head: &NodeRef<T>, node: &NodeRef<T>, f: &F) -> bool
+    fn find_head<F>(head: &NodeRef<T>, node: &NodeRef<T>, f: &F) -> bool
     where
         F: Fn(&NodeRef<T>) -> bool,
     {
@@ -113,12 +113,12 @@ where
             return f(node);
         }
         if let Some(left) = node.borrow().left.as_ref() {
-            if self.find_head(head, left, f) {
+            if Self::find_head(head, left, f) {
                 return true;
             }
         }
         if let Some(right) = node.borrow().right.as_ref() {
-            return self.find_head(head, right, f);
+            return Self::find_head(head, right, f);
         }
         false
     }
@@ -126,8 +126,8 @@ where
     fn is_subtree(&self, other: &BinaryTree<T>) -> bool {
         if let Some(head) = self.head.as_ref() {
             if let Some(other_head) = other.head.as_ref() {
-                return self.find_head(head, other_head, &|root_node| {
-                    self.trees_equal(head, root_node)
+                return Self::find_head(head, other_head, &|root_node| {
+                    Self::trees_equal(head, root_node)
                 });
             }
         }
@@ -148,6 +148,19 @@ where
     }
 }
 
+fn main() {
+    let mut t1 = BinaryTree::<i32>::new();
+    t1.insert(2);
+    t1.insert(1);
+    t1.insert(3);
+
+    let mut t2 = BinaryTree::<i32>::new();
+    t2.insert(2);
+    t2.insert(1);
+    t2.insert(3);
+
+    t2.is_subtree(&t1);
+}
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -164,26 +177,12 @@ mod tests {
         t2.insert(1);
         t2.insert(3);
 
-        assert_eq!(t2.is_subtree(&t1), true);
+        assert!(t2.is_subtree(&t1));
 
         let mut t3 = BinaryTree::<i32>::new();
         t3.insert(5);
         t3.insert(6);
         t3.insert(8);
-        assert_eq!(t3.is_subtree(&t1), false);
+        assert!(!t3.is_subtree(&t1));
     }
-}
-
-fn main() {
-    let mut t1 = BinaryTree::<i32>::new();
-    t1.insert(2);
-    t1.insert(1);
-    t1.insert(3);
-
-    let mut t2 = BinaryTree::<i32>::new();
-    t2.insert(2);
-    t2.insert(1);
-    t2.insert(3);
-
-    t2.is_subtree(&t1);
 }

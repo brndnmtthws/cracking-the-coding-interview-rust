@@ -78,7 +78,7 @@ where
     }
 }
 
-impl<'a, T> Iterator for Iter<T> {
+impl<T> Iterator for Iter<T> {
     type Item = NodeRef<T>;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -105,13 +105,20 @@ impl<T: Display> Display for LinkedList<T> {
     }
 }
 
+fn main() {
+    let mut left = LinkedList::<i32>::new();
+    let right = LinkedList::<i32>::new();
+    left.append(Rc::new(RefCell::new(6)));
+    left.lists_intersect(&right);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_intersection() {
-        let datavec = vec![
+        let datavec = [
             Rc::new(RefCell::new(1)),
             Rc::new(RefCell::new(2)),
             Rc::new(RefCell::new(3)),
@@ -129,10 +136,7 @@ mod tests {
             intersecting_second.append(value.clone());
         }
 
-        assert_eq!(
-            intersecting_first.lists_intersect(&intersecting_second),
-            true
-        );
+        assert!(intersecting_first.lists_intersect(&intersecting_second));
 
         let mut nonintersecting_first = LinkedList::<i32>::new();
         for value in datavec.iter().take(3) {
@@ -144,16 +148,6 @@ mod tests {
             nonintersecting_second.append(value.clone());
         }
 
-        assert_eq!(
-            nonintersecting_first.lists_intersect(&nonintersecting_second),
-            false
-        );
+        assert!(!nonintersecting_first.lists_intersect(&nonintersecting_second));
     }
-}
-
-fn main() {
-    let mut left = LinkedList::<i32>::new();
-    let right = LinkedList::<i32>::new();
-    left.append(Rc::new(RefCell::new(6)));
-    left.lists_intersect(&right);
 }

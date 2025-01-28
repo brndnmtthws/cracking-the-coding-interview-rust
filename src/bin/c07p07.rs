@@ -3,6 +3,7 @@ struct User {
     name: String,
 }
 
+#[allow(dead_code)]
 #[derive(Clone, Debug)]
 struct Client {
     user: User,
@@ -64,6 +65,16 @@ impl ChatServer {
     }
 }
 
+fn main() {
+    let mut chat_server = ChatServer::new();
+
+    chat_server.add_client(Client::new("Alice", "10.1.0.1"));
+    chat_server.add_client(Client::new("Bob", "10.1.0.2"));
+
+    chat_server.send(&Message::new("Alice", "Hello Bob"));
+    chat_server.send(&Message::new("Bob", "Hello Alice"));
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -78,14 +89,4 @@ mod tests {
         chat_server.send(&Message::new("Alice", "Hello Bob"));
         chat_server.send(&Message::new("Bob", "Hello Alice"));
     }
-}
-
-fn main() {
-    let mut chat_server = ChatServer::new();
-
-    chat_server.add_client(Client::new("Alice", "10.1.0.1"));
-    chat_server.add_client(Client::new("Bob", "10.1.0.2"));
-
-    chat_server.send(&Message::new("Alice", "Hello Bob"));
-    chat_server.send(&Message::new("Bob", "Hello Alice"));
 }

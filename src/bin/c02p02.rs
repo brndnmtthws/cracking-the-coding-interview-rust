@@ -82,7 +82,7 @@ where
     }
 }
 
-impl<'a, T> Iterator for Iter<T> {
+impl<T> Iterator for Iter<T> {
     type Item = NodeRef<T>;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -109,6 +109,13 @@ impl<T: Display> Display for LinkedList<T> {
     }
 }
 
+fn main() {
+    let mut list = LinkedList::<String>::new();
+    list.append(String::from("item1"));
+    list.append(String::from("item2"));
+    list.kth_to_last(1);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -131,11 +138,4 @@ mod tests {
             String::from("item3")
         );
     }
-}
-
-fn main() {
-    let mut list = LinkedList::<String>::new();
-    list.append(String::from("item1"));
-    list.append(String::from("item2"));
-    list.kth_to_last(1);
 }

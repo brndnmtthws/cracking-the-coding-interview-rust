@@ -26,6 +26,11 @@ fn permutations_without_dups(s: &str) -> Vec<String> {
     }
 }
 
+fn main() {
+    let s1 = "abc";
+    permutations_without_dups(s1);
+}
+
 #[cfg(test)]
 mod tests {
     use std::collections::HashSet;
@@ -49,9 +54,4 @@ mod tests {
         assert_eq!(s2_perms.len(), 5040);
         assert_eq!(s2_perms.len(), s2_set.len());
     }
-}
-
-fn main() {
-    let s1 = "abc";
-    permutations_without_dups(s1);
 }

@@ -28,6 +28,10 @@ fn rotate_image_90_degrees(image: &[Vec<u32>]) -> Image {
     rotated_image
 }
 
+fn main() {
+    rotate_image_90_degrees(&[vec![1]]);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -51,8 +55,4 @@ mod tests {
 
         assert_eq!(rotated_image, expected_rotated_image);
     }
-}
-
-fn main() {
-    rotate_image_90_degrees(&[vec![1]]);
 }

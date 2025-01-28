@@ -23,12 +23,14 @@ enum Rank {
     Ace,
 }
 
+#[allow(dead_code)]
 #[derive(Copy, Clone, Debug)]
 struct Card {
     suit: Suit,
     rank: Rank,
 }
 
+#[allow(dead_code)]
 #[derive(Clone, Debug)]
 struct DeckOfCards {
     cards: Vec<Card>,
@@ -102,6 +104,10 @@ impl DeckOfCards {
     }
 }
 
+fn main() {
+    let _deck_of_cards = DeckOfCards::new();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -111,8 +117,4 @@ mod tests {
         let deck_of_cards = DeckOfCards::new();
         assert_eq!(deck_of_cards.cards.len(), 52);
     }
-}
-
-fn main() {
-    let _deck_of_cards = DeckOfCards::new();
 }

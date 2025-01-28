@@ -19,15 +19,21 @@ where
 
     fn remove(&mut self) -> Option<T> {
         let mut rev = Vec::<T>::new();
-        while !self.arr.is_empty() {
-            rev.push(self.arr.pop().unwrap());
+        while let Some(element) = self.arr.pop() {
+            rev.push(element);
         }
         let ret = rev.pop();
-        while !rev.is_empty() {
-            self.arr.push(rev.pop().unwrap());
+        while let Some(element) = rev.pop() {
+            self.arr.push(element);
         }
         ret
     }
+}
+
+fn main() {
+    let mut my_queue: MyQueue<i32> = MyQueue::new();
+    my_queue.add(1);
+    my_queue.remove();
 }
 
 #[cfg(test)]
@@ -44,10 +50,4 @@ mod tests {
             assert_eq!(my_queue.remove().unwrap(), i);
         }
     }
-}
-
-fn main() {
-    let mut my_queue: MyQueue<i32> = MyQueue::new();
-    my_queue.add(1);
-    my_queue.remove();
 }

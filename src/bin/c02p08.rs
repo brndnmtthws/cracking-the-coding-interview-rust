@@ -97,7 +97,7 @@ where
     }
 }
 
-impl<'a, T> Iterator for Iter<T> {
+impl<T> Iterator for Iter<T> {
     type Item = NodeRef<T>;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -125,13 +125,19 @@ impl<T: Display> Display for LinkedList<T> {
     }
 }
 
+fn main() {
+    let mut left = LinkedList::<i32>::new();
+    left.append(6);
+    left.has_cycle();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_cycle() {
-        let datavec = vec!['A', 'B', 'C', 'D', 'E'];
+        let datavec = ['A', 'B', 'C', 'D', 'E'];
 
         let mut cycle_list = LinkedList::<char>::new();
         for value in datavec.iter() {
@@ -145,7 +151,7 @@ mod tests {
         cycle_list.tail().unwrap().borrow_mut().next = Some(third_node.unwrap());
 
         let cycle_result = cycle_list.has_cycle();
-        assert_eq!(cycle_result.is_some(), true);
+        assert!(cycle_result.is_some());
         assert_eq!(cycle_result.as_ref().unwrap().borrow().data, 'C');
 
         let mut nocycle_list = LinkedList::<char>::new();
@@ -154,10 +160,10 @@ mod tests {
         }
 
         let nocycle_result = nocycle_list.has_cycle();
-        assert_eq!(nocycle_result.is_none(), true);
+        assert!(nocycle_result.is_none());
 
         // Second case
-        let datavec2 = vec!['A', 'B', 'C', 'D', 'E', 'F'];
+        let datavec2 = ['A', 'B', 'C', 'D', 'E', 'F'];
 
         let mut cycle_list2 = LinkedList::<char>::new();
         for value in datavec2.iter() {
@@ -171,13 +177,7 @@ mod tests {
         cycle_list2.tail().unwrap().borrow_mut().next = Some(third_node2.unwrap());
 
         let cycle_result2 = cycle_list2.has_cycle();
-        assert_eq!(cycle_result2.is_some(), true);
+        assert!(cycle_result2.is_some());
         assert_eq!(cycle_result2.as_ref().unwrap().borrow().data, 'C');
     }
-}
-
-fn main() {
-    let mut left = LinkedList::<i32>::new();
-    left.append(6);
-    left.has_cycle();
 }

@@ -1,6 +1,6 @@
 use std::cell::RefCell;
-use std::collections::hash_map::DefaultHasher;
 use std::collections::HashSet;
+use std::collections::hash_map::DefaultHasher;
 use std::fmt::Display;
 use std::hash::Hasher;
 use std::rc::Rc;
@@ -115,7 +115,7 @@ where
     }
 }
 
-impl<'a, T> Iterator for Iter<T> {
+impl<T> Iterator for Iter<T> {
     type Item = NodeRef<T>;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -142,6 +142,14 @@ impl<T: Display> Display for LinkedList<T> {
     }
 }
 
+fn main() {
+    let mut list = LinkedList::<String>::new();
+    list.append(String::from("item1"));
+    list.append(String::from("item2"));
+    list.list_has_duplicates();
+    list.remove_duplicates();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -152,13 +160,13 @@ mod tests {
         list1.append(String::from("item1"));
         list1.append(String::from("item2"));
 
-        assert_eq!(list1.list_has_duplicates(), false);
+        assert!(!list1.list_has_duplicates());
 
         let mut list2 = LinkedList::<String>::new();
         list2.append(String::from("item"));
         list2.append(String::from("item"));
 
-        assert_eq!(list2.list_has_duplicates(), true);
+        assert!(list2.list_has_duplicates());
     }
 
     #[test]
@@ -168,24 +176,16 @@ mod tests {
         list1.append(String::from("item2"));
 
         list1.remove_duplicates();
-        assert_eq!(list1.list_has_duplicates(), false);
+        assert!(!list1.list_has_duplicates());
 
         let mut list2 = LinkedList::<String>::new();
         list2.append(String::from("item"));
         list2.append(String::from("item"));
 
-        assert_eq!(list2.list_has_duplicates(), true);
+        assert!(list2.list_has_duplicates());
 
         list2.remove_duplicates();
 
-        assert_eq!(list2.list_has_duplicates(), false);
+        assert!(!list2.list_has_duplicates());
     }
-}
-
-fn main() {
-    let mut list = LinkedList::<String>::new();
-    list.append(String::from("item1"));
-    list.append(String::from("item2"));
-    list.list_has_duplicates();
-    list.remove_duplicates();
 }

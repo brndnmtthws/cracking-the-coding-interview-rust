@@ -52,6 +52,25 @@ impl AnimalShelter {
     }
 }
 
+fn main() {
+    let mut animal_shelter = AnimalShelter::new();
+    animal_shelter.enqueue(Animal {
+        name: "Harry Potter".to_string(),
+        species: AnimalSpecies::Dog,
+    });
+    animal_shelter.enqueue(Animal {
+        name: "Hermione Granger".to_string(),
+        species: AnimalSpecies::Cat,
+    });
+    animal_shelter.enqueue(Animal {
+        name: "Ronald Weasly".to_string(),
+        species: AnimalSpecies::Cat,
+    });
+    animal_shelter.dequeue_any();
+    animal_shelter.dequeue_dog();
+    animal_shelter.dequeue_cat();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -92,23 +111,4 @@ mod tests {
         let next = animal_shelter.dequeue_any().unwrap();
         assert_eq!(next.name, "Helen");
     }
-}
-
-fn main() {
-    let mut animal_shelter = AnimalShelter::new();
-    animal_shelter.enqueue(Animal {
-        name: "Harry Potter".to_string(),
-        species: AnimalSpecies::Dog,
-    });
-    animal_shelter.enqueue(Animal {
-        name: "Hermione Granger".to_string(),
-        species: AnimalSpecies::Cat,
-    });
-    animal_shelter.enqueue(Animal {
-        name: "Ronald Weasly".to_string(),
-        species: AnimalSpecies::Cat,
-    });
-    animal_shelter.dequeue_any();
-    animal_shelter.dequeue_dog();
-    animal_shelter.dequeue_cat();
 }

@@ -49,18 +49,23 @@ fn get_path_to(
     vec![]
 }
 
+fn main() {
+    get_path_to(Location { x: 0, y: 0 }, Location { x: 100, y: 100 }, &[]);
+}
+
 #[cfg(test)]
 mod tests {
-    use super::*;
     use rand::Rng;
+
+    use super::*;
 
     #[test]
     fn test_robot_in_a_grid() {
         let mut off_limits: Vec<Location> = vec![];
-        let mut rng = rand::thread_rng();
+        let mut rng = rand::rng();
         for _ in 0..100 {
-            let x = rng.gen_range(1..100);
-            let y = rng.gen_range(1..100);
+            let x = rng.random_range(1..100);
+            let y = rng.random_range(1..100);
             off_limits.push(Location { x, y });
         }
         let path = get_path_to(
@@ -70,8 +75,4 @@ mod tests {
         );
         assert_eq!(path.last().unwrap(), &Location { x: 100, y: 100 });
     }
-}
-
-fn main() {
-    get_path_to(Location { x: 0, y: 0 }, Location { x: 100, y: 100 }, &[]);
 }

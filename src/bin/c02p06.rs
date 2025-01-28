@@ -72,7 +72,7 @@ where
     }
 }
 
-impl<'a, T> Iterator for Iter<T> {
+impl<T> Iterator for Iter<T> {
     type Item = NodeRef<T>;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -87,7 +87,7 @@ impl<'a, T> Iterator for Iter<T> {
     }
 }
 
-impl<'a, T> DoubleEndedIterator for Iter<T> {
+impl<T> DoubleEndedIterator for Iter<T> {
     fn next_back(&mut self) -> Option<Self::Item> {
         if let Some(cur) = self.prev.as_ref().cloned() {
             self.prev = cur.borrow().prev.clone();
@@ -113,6 +113,12 @@ impl<T: Display> Display for LinkedList<T> {
         }
         write!(w, "]")
     }
+}
+
+fn main() {
+    let mut list = LinkedList::<i32>::new();
+    list.append(6);
+    list.is_palindrome();
 }
 
 #[cfg(test)]
@@ -156,7 +162,7 @@ mod tests {
         list1.append(3);
         list1.append(2);
         list1.append(1);
-        assert_eq!(list1.is_palindrome(), true);
+        assert!(list1.is_palindrome());
 
         let mut list2 = LinkedList::<i32>::new();
         list2.append(1);
@@ -165,26 +171,20 @@ mod tests {
         list2.append(2);
         list2.append(1);
         list2.append(1);
-        assert_eq!(list2.is_palindrome(), false);
+        assert!(!list2.is_palindrome());
 
         let mut list3 = LinkedList::<i32>::new();
         list3.append(1);
         list3.append(2);
         list3.append(2);
         list3.append(1);
-        assert_eq!(list3.is_palindrome(), true);
+        assert!(list3.is_palindrome());
 
         let mut list4 = LinkedList::<i32>::new();
         list4.append(1);
         list4.append(1);
         list4.append(2);
         list4.append(2);
-        assert_eq!(list4.is_palindrome(), false);
+        assert!(!list4.is_palindrome());
     }
-}
-
-fn main() {
-    let mut list = LinkedList::<i32>::new();
-    list.append(6);
-    list.is_palindrome();
 }

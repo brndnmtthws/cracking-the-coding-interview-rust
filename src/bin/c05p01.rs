@@ -9,6 +9,10 @@ fn insert_bits(n: i32, m: i32, i: i32, j: i32) -> i32 {
     ret
 }
 
+fn main() {
+    insert_bits(0b100_0000_0000, 0b10011, 2, 6);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -17,8 +21,4 @@ mod tests {
     fn test_insert_bits() {
         assert_eq!(insert_bits(0b100_0000_0000, 0b10011, 2, 6), 0b100_0100_1100);
     }
-}
-
-fn main() {
-    insert_bits(0b100_0000_0000, 0b10011, 2, 6);
 }

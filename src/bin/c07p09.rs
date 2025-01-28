@@ -45,6 +45,12 @@ impl<'a, T> Iterator for Iter<'a, T> {
         }
     }
 }
+
+fn main() {
+    let mut arr = CircularArray::<char>::new(&['a', 'b', 'c']);
+    let _res1: Vec<char> = arr.iter().cloned().collect();
+    arr.rotate(1);
+}
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -58,10 +64,4 @@ mod tests {
         let res2: Vec<char> = arr.iter().cloned().collect();
         assert_eq!(res2, vec!['b', 'c', 'a']);
     }
-}
-
-fn main() {
-    let mut arr = CircularArray::<char>::new(&['a', 'b', 'c']);
-    let _res1: Vec<char> = arr.iter().cloned().collect();
-    arr.rotate(1);
 }

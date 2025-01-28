@@ -41,6 +41,13 @@ where
     }
 }
 
+fn main() {
+    let mut stack_with_min: Stack<i32> = Stack::new();
+    stack_with_min.push(1);
+    stack_with_min.min();
+    stack_with_min.pop();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -59,13 +66,6 @@ mod tests {
         assert_eq!(stack_with_min.pop().unwrap(), 2);
         assert_eq!(*stack_with_min.min().unwrap(), 3);
         assert_eq!(stack_with_min.pop().unwrap(), 3);
-        assert_eq!(stack_with_min.min().is_none(), true);
+        assert!(stack_with_min.min().is_none());
     }
-}
-
-fn main() {
-    let mut stack_with_min: Stack<i32> = Stack::new();
-    stack_with_min.push(1);
-    stack_with_min.min();
-    stack_with_min.pop();
 }

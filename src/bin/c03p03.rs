@@ -53,6 +53,16 @@ where
     }
 }
 
+fn main() {
+    let mut set_of_stacks: StackSet<i32> = StackSet::new(10);
+    set_of_stacks.push(1);
+    set_of_stacks.push(1);
+    set_of_stacks.push(1);
+    set_of_stacks.pop_at(0);
+    set_of_stacks.push(1);
+    set_of_stacks.pop();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -80,14 +90,4 @@ mod tests {
             assert_eq!(i, res);
         }
     }
-}
-
-fn main() {
-    let mut set_of_stacks: StackSet<i32> = StackSet::new(10);
-    set_of_stacks.push(1);
-    set_of_stacks.push(1);
-    set_of_stacks.push(1);
-    set_of_stacks.pop_at(0);
-    set_of_stacks.push(1);
-    set_of_stacks.pop();
 }

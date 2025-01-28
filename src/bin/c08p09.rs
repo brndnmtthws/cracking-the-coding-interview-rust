@@ -24,28 +24,25 @@ fn get_parens(n: u32) -> Vec<String> {
     }
 }
 
+fn main() {
+    get_parens(3);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_parens() {
-        assert_eq!(get_parens(0).is_empty(), true);
+        assert!(get_parens(0).is_empty());
         assert_eq!(get_parens(1), vec!["()".to_string()]);
         assert_eq!(get_parens(2), vec!["()()".to_string(), "(())".to_string(),]);
-        assert_eq!(
-            get_parens(3),
-            vec![
-                "()()()".to_string(),
-                "(()())".to_string(),
-                "()(())".to_string(),
-                "(())()".to_string(),
-                "((()))".to_string(),
-            ]
-        );
+        assert_eq!(get_parens(3), vec![
+            "()()()".to_string(),
+            "(()())".to_string(),
+            "()(())".to_string(),
+            "(())()".to_string(),
+            "((()))".to_string(),
+        ]);
     }
-}
-
-fn main() {
-    get_parens(3);
 }

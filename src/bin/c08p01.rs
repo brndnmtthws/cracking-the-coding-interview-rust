@@ -10,6 +10,10 @@ fn triple_step(steps: i32) -> i32 {
     }
 }
 
+fn main() {
+    triple_step(1);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -22,8 +26,4 @@ mod tests {
         assert_eq!(triple_step(4), 7);
         assert_eq!(triple_step(5), 13);
     }
-}
-
-fn main() {
-    triple_step(1);
 }

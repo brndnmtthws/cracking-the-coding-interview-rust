@@ -6,6 +6,13 @@ fn move_to_target(n: usize, source: &mut Vec<i32>, target: &mut Vec<i32>, aux: &
     }
 }
 
+fn main() {
+    let mut source = vec![5, 4, 3, 2, 1];
+    let mut target: Vec<i32> = vec![];
+    let mut aux: Vec<i32> = vec![];
+    move_to_target(source.len(), &mut source, &mut target, &mut aux);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -20,11 +27,4 @@ mod tests {
         assert_eq!(target, vec![5, 4, 3, 2, 1]);
         assert_eq!(aux, vec![]);
     }
-}
-
-fn main() {
-    let mut source = vec![5, 4, 3, 2, 1];
-    let mut target: Vec<i32> = vec![];
-    let mut aux: Vec<i32> = vec![];
-    move_to_target(source.len(), &mut source, &mut target, &mut aux);
 }
