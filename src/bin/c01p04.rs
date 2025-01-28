@@ -8,7 +8,7 @@ fn count_chars(s: &str) -> HashMap<char, i32> {
     characters
 }
 
-fn palidrome_permutations(s: &str) -> bool {
+fn palindrome_permutations(s: &str) -> bool {
     let normalized_s = s
         .to_lowercase()
         .split_whitespace()
@@ -33,16 +33,16 @@ fn palidrome_permutations(s: &str) -> bool {
     true
 }
 
+fn main() {
+    palindrome_permutations("Tact Coa");
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_palindrome_permutation() {
-        assert_eq!(palidrome_permutations("Tact Coa"), true);
+        assert!(palindrome_permutations("Tact Coa"));
     }
-}
-
-fn main() {
-    palidrome_permutations("Tact Coa");
 }

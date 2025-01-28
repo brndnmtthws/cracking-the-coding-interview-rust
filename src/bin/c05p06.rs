@@ -13,6 +13,10 @@ fn conversion_count(a: i32, b: i32) -> i32 {
     count_ones(xor)
 }
 
+fn main() {
+    conversion_count(0b1_1101, 0b0_1111);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -21,8 +25,4 @@ mod tests {
     fn test_conversion() {
         assert_eq!(conversion_count(0b1_1101, 0b0_1111), 2);
     }
-}
-
-fn main() {
-    conversion_count(0b1_1101, 0b0_1111);
 }

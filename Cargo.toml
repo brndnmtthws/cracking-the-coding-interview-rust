@@ -1,9 +1,9 @@
 [package]
 name = "cracking-the-coding-interview"
 version = "0.1.0"
-authors = ["Brenden Matthews <brenden@diddyinc.com>"]
+authors = ["Brenden Matthews <brenden@brndn.io>"]
 edition = "2018"
 
 [dependencies]
-rand = "0.8"
+rand = "0.9"
 num = "0.4"

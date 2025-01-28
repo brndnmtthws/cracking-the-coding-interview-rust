@@ -35,12 +35,12 @@ impl<T> Graph<T> {
         ret
     }
 
-    fn dfs_from<F>(&self, f: &mut F, vertex: VertexRef<T>)
+    fn dfs_from<F>(f: &mut F, vertex: VertexRef<T>)
     where
         F: FnMut(&VertexRef<T>),
     {
         for v in vertex.borrow().edges.iter() {
-            self.dfs_from(f, v.clone());
+            Self::dfs_from(f, v.clone());
         }
         f(&vertex);
     }
@@ -50,7 +50,7 @@ impl<T> Graph<T> {
         F: FnMut(&VertexRef<T>),
     {
         for head in self.head.iter() {
-            self.dfs_from(&mut f, head.clone());
+            Self::dfs_from(&mut f, head.clone());
         }
     }
 }
@@ -63,6 +63,25 @@ impl<T: Display> Display for Graph<T> {
         });
         write!(w, "]")
     }
+}
+
+fn main() {
+    let mut graph = Graph::<char>::new();
+    let c_vertex = graph.add_vertex('c', &[]);
+    let d_vertex = graph.add_vertex('d', &[c_vertex]);
+    let a_vertex = graph.add_vertex('a', &[d_vertex.clone()]);
+    let b_vertex = graph.add_vertex('b', &[d_vertex]);
+    let _f_vertex = graph.add_vertex('f', &[a_vertex, b_vertex]);
+    let _e_vertex = graph.add_vertex('e', &[]);
+
+    let mut graph_order = Vec::<char>::new();
+    graph.dfs(|vertex| {
+        let value = vertex.borrow().data;
+        if !graph_order.contains(&value) {
+            graph_order.push(value);
+        }
+    });
+    assert_eq!(graph_order, vec!['f', 'a', 'b', 'd', 'c', 'e']);
 }
 
 #[cfg(test)]
@@ -88,23 +107,4 @@ mod tests {
         });
         assert_eq!(graph_order, vec!['f', 'a', 'b', 'd', 'c', 'e']);
     }
-}
-
-fn main() {
-    let mut graph = Graph::<char>::new();
-    let c_vertex = graph.add_vertex('c', &[]);
-    let d_vertex = graph.add_vertex('d', &[c_vertex]);
-    let a_vertex = graph.add_vertex('a', &[d_vertex.clone()]);
-    let b_vertex = graph.add_vertex('b', &[d_vertex]);
-    let _f_vertex = graph.add_vertex('f', &[a_vertex, b_vertex]);
-    let _e_vertex = graph.add_vertex('e', &[]);
-
-    let mut graph_order = Vec::<char>::new();
-    graph.dfs(|vertex| {
-        let value = vertex.borrow().data;
-        if !graph_order.contains(&value) {
-            graph_order.push(value);
-        }
-    });
-    assert_eq!(graph_order, vec!['f', 'a', 'b', 'd', 'c', 'e']);
 }

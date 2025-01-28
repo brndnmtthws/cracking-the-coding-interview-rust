@@ -57,6 +57,13 @@ where
     }
 }
 
+fn main() {
+    let mut table = HashTable::<String, String>::new(10);
+    table.put("dog".to_string(), "Doge".to_string());
+    table.get("dog".to_string());
+    table.delete("dog".to_string());
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -69,11 +76,4 @@ mod tests {
         table.delete("dog".to_string());
         assert_eq!(table.get("dog".to_string()), None);
     }
-}
-
-fn main() {
-    let mut table = HashTable::<String, String>::new(10);
-    table.put("dog".to_string(), "Doge".to_string());
-    table.get("dog".to_string());
-    table.delete("dog".to_string());
 }

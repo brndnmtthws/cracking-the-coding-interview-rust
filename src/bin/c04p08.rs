@@ -35,12 +35,12 @@ impl<T> Graph<T> {
         ret
     }
 
-    fn dfs_from<F>(&self, f: &mut F, vertex: VertexRef<T>)
+    fn dfs_from<F>(f: &mut F, vertex: VertexRef<T>)
     where
         F: FnMut(&VertexRef<T>),
     {
         for v in vertex.borrow().edges.iter() {
-            self.dfs_from(f, v.clone());
+            Self::dfs_from(f, v.clone());
         }
         f(&vertex);
     }
@@ -50,12 +50,11 @@ impl<T> Graph<T> {
         F: FnMut(&VertexRef<T>),
     {
         for head in self.head.iter() {
-            self.dfs_from(&mut f, head.clone());
+            Self::dfs_from(&mut f, head.clone());
         }
     }
 
     fn common_ancestor_from<F>(
-        &self,
         f: &mut F,
         vertex: VertexRef<T>,
         left_vertex: &VertexRef<T>,
@@ -76,7 +75,7 @@ impl<T> Graph<T> {
             }
         }
         for v in vertex.borrow().edges.iter() {
-            if self.common_ancestor_from(f, v.clone(), left_vertex, right_vertex) {
+            if Self::common_ancestor_from(f, v.clone(), left_vertex, right_vertex) {
                 return true;
             }
         }
@@ -88,7 +87,7 @@ impl<T> Graph<T> {
         F: FnMut(&VertexRef<T>),
     {
         for head in self.head.iter() {
-            if self.common_ancestor_from(&mut f, head.clone(), &left_vertex, &right_vertex) {
+            if Self::common_ancestor_from(&mut f, head.clone(), &left_vertex, &right_vertex) {
                 return;
             }
         }
@@ -103,6 +102,23 @@ impl<T: Display> Display for Graph<T> {
         });
         write!(w, "]")
     }
+}
+
+fn main() {
+    let mut graph = Graph::<char>::new();
+    let c_vertex = graph.add_vertex('c', &[]);
+    let d_vertex = graph.add_vertex('d', &[c_vertex]);
+    let a_vertex = graph.add_vertex('a', &[d_vertex.clone()]);
+    let b_vertex = graph.add_vertex('b', &[d_vertex.clone()]);
+    let _f_vertex = graph.add_vertex('f', &[a_vertex.clone(), b_vertex.clone()]);
+    let _e_vertex = graph.add_vertex('e', &[]);
+
+    let mut was_called = false;
+    graph.common_ancestor(a_vertex, b_vertex, |vertex| {
+        was_called = true;
+        assert!(Rc::ptr_eq(vertex, &d_vertex))
+    });
+    assert!(was_called);
 }
 
 #[cfg(test)]
@@ -122,25 +138,8 @@ mod tests {
         let mut was_called = false;
         graph.common_ancestor(a_vertex, b_vertex, |vertex| {
             was_called = true;
-            assert_eq!(Rc::ptr_eq(vertex, &d_vertex), true)
+            assert!(Rc::ptr_eq(vertex, &d_vertex))
         });
-        assert_eq!(was_called, true);
+        assert!(was_called);
     }
-}
-
-fn main() {
-    let mut graph = Graph::<char>::new();
-    let c_vertex = graph.add_vertex('c', &[]);
-    let d_vertex = graph.add_vertex('d', &[c_vertex]);
-    let a_vertex = graph.add_vertex('a', &[d_vertex.clone()]);
-    let b_vertex = graph.add_vertex('b', &[d_vertex.clone()]);
-    let _f_vertex = graph.add_vertex('f', &[a_vertex.clone(), b_vertex.clone()]);
-    let _e_vertex = graph.add_vertex('e', &[]);
-
-    let mut was_called = false;
-    graph.common_ancestor(a_vertex, b_vertex, |vertex| {
-        was_called = true;
-        assert_eq!(Rc::ptr_eq(vertex, &d_vertex), true)
-    });
-    assert_eq!(was_called, true);
 }

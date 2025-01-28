@@ -10,6 +10,7 @@ struct Board {
     squares: Vec<Vec<Piece>>,
 }
 
+#[allow(dead_code)]
 #[derive(Clone, Debug)]
 struct GameResult {
     winner: Piece,
@@ -114,6 +115,13 @@ impl Board {
     }
 }
 
+fn main() {
+    let mut board = Board::new();
+    board.start_game();
+    board.place_piece(Piece::White, 2, 4);
+    let _result = board.get_result();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -134,11 +142,4 @@ mod tests {
         assert_eq!(board.squares[4][3], Piece::Black);
         let _result = board.get_result();
     }
-}
-
-fn main() {
-    let mut board = Board::new();
-    board.start_game();
-    board.place_piece(Piece::White, 2, 4);
-    let _result = board.get_result();
 }

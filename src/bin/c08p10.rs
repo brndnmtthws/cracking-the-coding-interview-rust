@@ -16,6 +16,17 @@ fn paint_fill(x: usize, y: usize, canvas: &mut Vec<Vec<i32>>, new_colour: i32) {
     }
 }
 
+fn main() {
+    let mut canvas = vec![
+        vec![0, 0, 1, 0, 0],
+        vec![0, 0, 1, 0, 0],
+        vec![1, 1, 1, 0, 0],
+        vec![0, 0, 0, 0, 0],
+        vec![0, 0, 0, 0, 0],
+    ];
+    paint_fill(0, 0, &mut canvas, 2);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -30,26 +41,12 @@ mod tests {
             vec![0, 0, 0, 0, 0],
         ];
         paint_fill(0, 0, &mut canvas, 2);
-        assert_eq!(
-            canvas,
-            vec![
-                vec![2, 2, 1, 0, 0],
-                vec![2, 2, 1, 0, 0],
-                vec![1, 1, 1, 0, 0],
-                vec![0, 0, 0, 0, 0],
-                vec![0, 0, 0, 0, 0],
-            ]
-        );
+        assert_eq!(canvas, vec![
+            vec![2, 2, 1, 0, 0],
+            vec![2, 2, 1, 0, 0],
+            vec![1, 1, 1, 0, 0],
+            vec![0, 0, 0, 0, 0],
+            vec![0, 0, 0, 0, 0],
+        ]);
     }
-}
-
-fn main() {
-    let mut canvas = vec![
-        vec![0, 0, 1, 0, 0],
-        vec![0, 0, 1, 0, 0],
-        vec![1, 1, 1, 0, 0],
-        vec![0, 0, 0, 0, 0],
-        vec![0, 0, 0, 0, 0],
-    ];
-    paint_fill(0, 0, &mut canvas, 2);
 }

@@ -13,7 +13,7 @@ fn next_number(n: i32) -> (i32, i32) {
     let mut next_largest = 0;
     let mut c = n + 1;
     let one_count = count_ones(n);
-    while c < std::i32::MAX {
+    while c < i32::MAX {
         if count_ones(c) == one_count {
             next_largest = c;
             break;
@@ -31,6 +31,10 @@ fn next_number(n: i32) -> (i32, i32) {
     (next_smallest, next_largest)
 }
 
+fn main() {
+    next_number(0b100);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -39,8 +43,4 @@ mod tests {
     fn test_next_number() {
         assert_eq!(next_number(0b100), (0b10, 0b1000));
     }
-}
-
-fn main() {
-    next_number(0b100);
 }

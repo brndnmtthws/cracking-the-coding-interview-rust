@@ -34,38 +34,38 @@ where
             ret
         } else {
             let mut head = self.head.as_mut().unwrap().clone();
-            self.insert_at(&mut head, ret)
+            Self::insert_at(&mut head, ret)
         }
     }
 
-    fn insert_at(&mut self, parent_node: &mut NodeRef<T>, new_node: NodeRef<T>) -> NodeRef<T> {
+    fn insert_at(parent_node: &mut NodeRef<T>, new_node: NodeRef<T>) -> NodeRef<T> {
         if new_node.borrow().data < parent_node.borrow().data {
             if parent_node.borrow().left.is_some() {
                 let mut new_parent = parent_node.borrow_mut().left.as_mut().unwrap().clone();
-                self.insert_at(&mut new_parent, new_node)
+                Self::insert_at(&mut new_parent, new_node)
             } else {
                 parent_node.borrow_mut().left = Some(new_node.clone());
                 new_node
             }
         } else if parent_node.borrow().right.is_some() {
             let mut new_parent = parent_node.borrow_mut().right.as_mut().unwrap().clone();
-            self.insert_at(&mut new_parent, new_node)
+            Self::insert_at(&mut new_parent, new_node)
         } else {
             parent_node.borrow_mut().right = Some(new_node.clone());
             new_node
         }
     }
 
-    fn visit_from<F>(&self, parent_node: &NodeRef<T>, f: &mut F)
+    fn visit_from<F>(parent_node: &NodeRef<T>, f: &mut F)
     where
         F: FnMut(&NodeRef<T>),
     {
         f(parent_node);
         if let Some(left) = parent_node.borrow().left.as_ref() {
-            self.visit_from(left, f);
+            Self::visit_from(left, f);
         }
         if let Some(right) = parent_node.borrow().right.as_ref() {
-            self.visit_from(right, f);
+            Self::visit_from(right, f);
         }
     }
 
@@ -74,7 +74,7 @@ where
         F: FnMut(&NodeRef<T>),
     {
         if self.head.is_some() {
-            self.visit_from(self.head.as_ref().unwrap(), &mut f)
+            Self::visit_from(self.head.as_ref().unwrap(), &mut f)
         }
     }
 
@@ -91,13 +91,13 @@ where
         }
     }
 
-    fn height_inner(&self, node: &NodeRef<T>, height: usize) -> usize {
+    fn height_inner(node: &NodeRef<T>, height: usize) -> usize {
         let mut max_height = height;
         if let Some(left) = node.borrow().left.as_ref() {
-            max_height = std::cmp::max(self.height_inner(left, height + 1), max_height);
+            max_height = std::cmp::max(Self::height_inner(left, height + 1), max_height);
         }
         if let Some(right) = node.borrow().right.as_ref() {
-            max_height = std::cmp::max(self.height_inner(right, height + 1), max_height);
+            max_height = std::cmp::max(Self::height_inner(right, height + 1), max_height);
         }
         max_height
     }
@@ -105,24 +105,24 @@ where
     fn height(&self) -> usize {
         let mut height = 0;
         if let Some(head) = self.head.as_ref() {
-            height = self.height_inner(head, height + 1);
+            height = Self::height_inner(head, height + 1);
         }
         height
     }
 
-    fn list_of_depths_inner(&self, node: &NodeRef<T>) -> Vec<Vec<NodeRef<T>>> {
+    fn list_of_depths_inner(node: &NodeRef<T>) -> Vec<Vec<NodeRef<T>>> {
         let mut result: Vec<Vec<NodeRef<T>>> = vec![vec![node.clone()]];
         if let Some(left) = node.borrow().left.as_ref() {
-            let mut left_result = self.list_of_depths_inner(left);
+            let mut left_result = Self::list_of_depths_inner(left);
             if let Some(right) = node.borrow().right.as_ref() {
-                let mut right_result = self.list_of_depths_inner(right);
+                let mut right_result = Self::list_of_depths_inner(right);
                 for (lefta, righta) in left_result.iter_mut().zip(right_result.iter_mut()) {
                     lefta.append(righta);
                 }
             }
             result.append(&mut left_result);
         } else if let Some(right) = node.borrow().right.as_ref() {
-            let subresult = self.list_of_depths_inner(right);
+            let subresult = Self::list_of_depths_inner(right);
             result.extend_from_slice(&subresult);
         }
         result
@@ -130,7 +130,7 @@ where
 
     fn list_of_depths(&self) -> Vec<Vec<NodeRef<T>>> {
         if let Some(head) = self.head.as_ref() {
-            self.list_of_depths_inner(head)
+            Self::list_of_depths_inner(head)
         } else {
             vec![]
         }
@@ -150,6 +150,14 @@ where
     }
 }
 
+fn main() {
+    let mut binary_tree = BinaryTree::<i32>::new();
+    let arr: Vec<i32> = (0..10).collect();
+    binary_tree.add_vector(&arr);
+    binary_tree.height();
+    let _list_of_depths = binary_tree.list_of_depths();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -164,12 +172,4 @@ mod tests {
         let len_sum: usize = list_of_depths.iter().map(std::vec::Vec::len).sum();
         assert_eq!(len_sum, 10);
     }
-}
-
-fn main() {
-    let mut binary_tree = BinaryTree::<i32>::new();
-    let arr: Vec<i32> = (0..10).collect();
-    binary_tree.add_vector(&arr);
-    binary_tree.height();
-    let _list_of_depths = binary_tree.list_of_depths();
 }

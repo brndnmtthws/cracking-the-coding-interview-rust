@@ -1,6 +1,6 @@
 static GRID_SIZE: usize = 8;
 
-fn check_valid(columns: &mut Vec<usize>, row1: usize, column1: usize) -> bool {
+fn check_valid(columns: &mut [usize], row1: usize, column1: usize) -> bool {
     for (row2, column2) in columns.iter().take(row1).enumerate() {
         if column1 == *column2 {
             return false;
@@ -29,6 +29,12 @@ fn place_queens(row: usize, columns: &mut Vec<usize>, results: &mut Vec<Vec<usiz
     }
 }
 
+fn main() {
+    let mut results: Vec<Vec<usize>> = vec![];
+    let mut columns: Vec<usize> = vec![0; 8];
+    place_queens(0, &mut columns, &mut results);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -40,10 +46,4 @@ mod tests {
         place_queens(0, &mut columns, &mut results);
         assert_eq!(results.len(), 92);
     }
-}
-
-fn main() {
-    let mut results: Vec<Vec<usize>> = vec![];
-    let mut columns: Vec<usize> = vec![0; 8];
-    place_queens(0, &mut columns, &mut results);
 }

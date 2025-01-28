@@ -66,7 +66,7 @@ where
     }
 }
 
-impl<'a, T> Iterator for Iter<T> {
+impl<T> Iterator for Iter<T> {
     type Item = NodeRef<T>;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -151,6 +151,16 @@ fn sum_forward(left: &LinkedList<i32>, right: &LinkedList<i32>) -> LinkedList<i3
     new_list
 }
 
+fn main() {
+    let mut left = LinkedList::<i32>::new();
+    left.append(6);
+
+    let mut right = LinkedList::<i32>::new();
+    right.append(2);
+    sum_backward(&left, &right);
+    sum_forward(&left, &right);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -192,14 +202,4 @@ mod tests {
         assert_eq!(iter.next().unwrap().borrow().data, 1);
         assert_eq!(iter.next().unwrap().borrow().data, 2);
     }
-}
-
-fn main() {
-    let mut left = LinkedList::<i32>::new();
-    left.append(6);
-
-    let mut right = LinkedList::<i32>::new();
-    right.append(2);
-    sum_backward(&left, &right);
-    sum_forward(&left, &right);
 }

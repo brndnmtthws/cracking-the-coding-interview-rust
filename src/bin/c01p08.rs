@@ -26,47 +26,39 @@ fn zero_matrix_where_zero(mat: &[Vec<u32>]) -> Mat {
     result
 }
 
+fn main() {
+    zero_matrix_where_zero(&[vec![0]]);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_zero_matrix_where_zeros() {
+        assert_eq!(zero_matrix_where_zero(&[vec![0, 1], vec![1, 1]]), [
+            vec![0, 0],
+            vec![0, 1]
+        ]);
         assert_eq!(
-            zero_matrix_where_zero(&[vec![0, 1], vec![1, 1]]),
-            [vec![0, 0], vec![0, 1]]
+            zero_matrix_where_zero(
+                &[vec![0, 1, 1, 1], vec![1, 1, 1, 1], vec![1, 1, 1, 1], vec![
+                    1, 1, 1, 1
+                ],]
+            ),
+            [vec![0, 0, 0, 0], vec![0, 1, 1, 1], vec![0, 1, 1, 1], vec![
+                0, 1, 1, 1
+            ],]
         );
         assert_eq!(
-            zero_matrix_where_zero(&[
-                vec![0, 1, 1, 1],
-                vec![1, 1, 1, 1],
-                vec![1, 1, 1, 1],
-                vec![1, 1, 1, 1],
-            ]),
-            [
-                vec![0, 0, 0, 0],
-                vec![0, 1, 1, 1],
-                vec![0, 1, 1, 1],
-                vec![0, 1, 1, 1],
-            ]
-        );
-        assert_eq!(
-            zero_matrix_where_zero(&[
-                vec![1, 1, 1, 1],
-                vec![1, 1, 1, 1],
-                vec![1, 1, 0, 1],
-                vec![1, 1, 1, 1],
-            ]),
-            [
-                vec![1, 1, 0, 1],
-                vec![1, 1, 0, 1],
-                vec![0, 0, 0, 0],
-                vec![1, 1, 0, 1],
-            ]
+            zero_matrix_where_zero(
+                &[vec![1, 1, 1, 1], vec![1, 1, 1, 1], vec![1, 1, 0, 1], vec![
+                    1, 1, 1, 1
+                ],]
+            ),
+            [vec![1, 1, 0, 1], vec![1, 1, 0, 1], vec![0, 0, 0, 0], vec![
+                1, 1, 0, 1
+            ],]
         );
     }
-}
-
-fn main() {
-    zero_matrix_where_zero(&[vec![0]]);
 }

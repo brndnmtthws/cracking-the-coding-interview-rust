@@ -33,12 +33,12 @@ impl<T> Graph<T> {
         ret
     }
 
-    fn dfs_from<F>(&self, f: &mut F, vertex: VertexRef<T>) -> bool
+    fn dfs_from<F>(f: &mut F, vertex: VertexRef<T>) -> bool
     where
         F: FnMut(&VertexRef<T>) -> bool,
     {
         for v in vertex.borrow().edges.iter() {
-            if !self.dfs_from(f, v.clone()) {
+            if !Self::dfs_from(f, v.clone()) {
                 return false;
             }
         }
@@ -50,13 +50,13 @@ impl<T> Graph<T> {
         F: FnMut(&VertexRef<T>) -> bool,
     {
         if let Some(head) = &self.head {
-            self.dfs_from(&mut f, head.clone());
+            Self::dfs_from(&mut f, head.clone());
         }
     }
 
     fn has_path(&self, from: VertexRef<T>, to: VertexRef<T>) -> bool {
         let mut found_path = false;
-        self.dfs_from(
+        Self::dfs_from(
             &mut |v| {
                 if Rc::ptr_eq(v, &to) {
                     // a path has been found
@@ -83,6 +83,13 @@ impl<T: Display> Display for Graph<T> {
     }
 }
 
+fn main() {
+    let mut graph = Graph::<i32>::new();
+    let first = graph.add_vertex(1, &[]);
+    let second = graph.add_vertex(2, &[]);
+    graph.has_path(first, second);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -94,14 +101,7 @@ mod tests {
         let second = graph.add_vertex(2, &[first.clone()]);
         let third = graph.add_vertex(3, &[first.clone(), second]);
 
-        assert_eq!(graph.has_path(first.clone(), third.clone()), true);
-        assert_eq!(graph.has_path(third, first), false);
+        assert!(graph.has_path(first.clone(), third.clone()));
+        assert!(!graph.has_path(third, first));
     }
-}
-
-fn main() {
-    let mut graph = Graph::<i32>::new();
-    let first = graph.add_vertex(1, &[]);
-    let second = graph.add_vertex(2, &[]);
-    graph.has_path(first, second);
 }

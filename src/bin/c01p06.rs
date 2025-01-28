@@ -22,6 +22,10 @@ fn compress_string(s: &str) -> String {
     result
 }
 
+fn main() {
+    compress_string("aabcccccaaa");
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -34,8 +38,4 @@ mod tests {
             "ucrxgbaoetibaseuchaoesuntmaemrcuhaoeusaeuch"
         );
     }
-}
-
-fn main() {
-    compress_string("aabcccccaaa");
 }

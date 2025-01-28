@@ -28,23 +28,17 @@ fn is_permutation(s1: &str, s2: &str) -> bool {
     true
 }
 
+fn main() {
+    is_permutation(&String::from("cat"), &String::from("dog"));
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_is_permutation() {
-        assert_eq!(
-            is_permutation(&String::from("cat"), &String::from("tac")),
-            true
-        );
-        assert_eq!(
-            is_permutation(&String::from("cat"), &String::from("dog")),
-            false
-        );
+        assert!(is_permutation(&String::from("cat"), &String::from("tac")));
+        assert!(!is_permutation(&String::from("cat"), &String::from("dog")));
     }
-}
-
-fn main() {
-    is_permutation(&String::from("cat"), &String::from("dog"));
 }

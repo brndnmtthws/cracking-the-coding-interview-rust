@@ -2,11 +2,7 @@ fn count_eval(s: &str, result: bool) -> u64 {
     if s.is_empty() {
         0
     } else if s.len() == 1 {
-        if (s == "1") == result {
-            1
-        } else {
-            0
-        }
+        if (s == "1") == result { 1 } else { 0 }
     } else {
         let mut ways: u64 = 0;
         for (i, c) in s.char_indices().skip(1).step_by(2) {
@@ -40,6 +36,10 @@ fn count_eval(s: &str, result: bool) -> u64 {
     }
 }
 
+fn main() {
+    count_eval("1^0|0|1", false);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -49,8 +49,4 @@ mod tests {
         assert_eq!(count_eval("1^0|0|1", false), 2);
         assert_eq!(count_eval("0&0&0&1^1|0", true), 10);
     }
-}
-
-fn main() {
-    count_eval("1^0|0|1", false);
 }

@@ -30,24 +30,23 @@ fn all_chars_unique_part_b(s: &str) -> bool {
     true
 }
 
+fn main() {
+    all_chars_unique_part_a(&String::from("helloworld"));
+    all_chars_unique_part_b(&String::from("helloworld"));
+}
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_part_a() {
-        assert_eq!(all_chars_unique_part_a(&String::from("abcdefg")), true);
-        assert_eq!(all_chars_unique_part_a(&String::from("abcdefga")), false);
+        assert!(all_chars_unique_part_a(&String::from("abcdefg")));
+        assert!(!all_chars_unique_part_a(&String::from("abcdefga")));
     }
 
     #[test]
     fn test_part_b() {
-        assert_eq!(all_chars_unique_part_b(&String::from("abcdefg")), true);
-        assert_eq!(all_chars_unique_part_b(&String::from("abcdefga")), false);
+        assert!(all_chars_unique_part_b(&String::from("abcdefg")));
+        assert!(!all_chars_unique_part_b(&String::from("abcdefga")));
     }
-}
-
-fn main() {
-    all_chars_unique_part_a(&String::from("helloworld"));
-    all_chars_unique_part_b(&String::from("helloworld"));
 }

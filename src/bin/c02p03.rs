@@ -77,7 +77,7 @@ where
     }
 }
 
-impl<'a, T> Iterator for Iter<T> {
+impl<T> Iterator for Iter<T> {
     type Item = NodeRef<T>;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -104,6 +104,15 @@ impl<T: Display> Display for LinkedList<T> {
     }
 }
 
+fn main() {
+    let mut list = LinkedList::<String>::new();
+    list.append(String::from("item1"));
+    list.append(String::from("item2"));
+    for node in list.iter() {
+        list.remove(&node.clone());
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -120,21 +129,12 @@ mod tests {
         for (n, node) in list1.iter().enumerate() {
             if n == 3 {
                 let to_remove = Some(node.clone());
-                list1.remove(&to_remove.unwrap());
+                list1.remove(to_remove.as_ref().unwrap());
             }
         }
 
         for node in list1.iter() {
             assert_ne!(node.borrow().data, "item4");
         }
-    }
-}
-
-fn main() {
-    let mut list = LinkedList::<String>::new();
-    list.append(String::from("item1"));
-    list.append(String::from("item2"));
-    for node in list.iter() {
-        list.remove(&node.clone());
     }
 }

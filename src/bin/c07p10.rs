@@ -1,5 +1,5 @@
+use rand::rng;
 use rand::seq::SliceRandom;
-use rand::thread_rng;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum SquareState {
@@ -94,7 +94,7 @@ impl Board {
 
     fn place_mines(&mut self, count: usize) -> &mut Self {
         let mut mines: Vec<usize> = (0..(self.squares.len() * self.squares[0].len())).collect();
-        let mut rng = thread_rng();
+        let mut rng = rng();
         mines.shuffle(&mut rng);
         for location in mines.iter().take(count) {
             let x = location / self.squares.len();
@@ -170,6 +170,16 @@ impl std::fmt::Display for Board {
     }
 }
 
+fn main() {
+    let mut board = Board::new(10, 10);
+    board.place_mines(8);
+    println!("{}", board);
+    board.flag_square(0, 1);
+    println!("{}", board);
+    board.expose_square(3, 4);
+    println!("{}", board);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -185,14 +195,4 @@ mod tests {
         println!("{}", board);
         println!("Game result -> {:?}", result);
     }
-}
-
-fn main() {
-    let mut board = Board::new(10, 10);
-    board.place_mines(8);
-    println!("{}", board);
-    board.flag_square(0, 1);
-    println!("{}", board);
-    board.expose_square(3, 4);
-    println!("{}", board);
 }

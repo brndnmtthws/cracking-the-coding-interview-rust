@@ -17,28 +17,25 @@ fn power_set(arr: &[i64]) -> Vec<Vec<i64>> {
     }
 }
 
+fn main() {
+    power_set(&[0, 1, 2]);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_power_set() {
-        assert_eq!(
-            power_set(&[0, 1, 2]),
-            vec![
-                vec![],
-                vec![2],
-                vec![1],
-                vec![1, 2],
-                vec![0],
-                vec![0, 2],
-                vec![0, 1],
-                vec![0, 1, 2],
-            ]
-        );
+        assert_eq!(power_set(&[0, 1, 2]), vec![
+            vec![],
+            vec![2],
+            vec![1],
+            vec![1, 2],
+            vec![0],
+            vec![0, 2],
+            vec![0, 1],
+            vec![0, 1, 2],
+        ]);
     }
-}
-
-fn main() {
-    power_set(&[0, 1, 2]);
 }

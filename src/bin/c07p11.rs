@@ -7,6 +7,7 @@ enum Type {
     Directory,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 struct INode {
     name: String,
@@ -34,6 +35,7 @@ impl INode {
         self.children.push(file.clone());
         file
     }
+
     fn add_directory(&mut self, name: &str) -> Rc<RefCell<INode>> {
         let dir = Rc::new(RefCell::new(INode {
             name: name.to_string(),
@@ -72,6 +74,12 @@ impl Filesystem {
     }
 }
 
+fn main() {
+    let mut fs = Filesystem::new();
+    let derp = fs.root.add_directory("derp");
+    let _file = derp.borrow_mut().add_file("herp", vec![0; 5]);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -82,10 +90,4 @@ mod tests {
         let derp = fs.root.add_directory("derp");
         let _file = derp.borrow_mut().add_file("herp", vec![0; 5]);
     }
-}
-
-fn main() {
-    let mut fs = Filesystem::new();
-    let derp = fs.root.add_directory("derp");
-    let _file = derp.borrow_mut().add_file("herp", vec![0; 5]);
 }

@@ -53,6 +53,13 @@ impl ParkingLot {
     }
 }
 
+fn main() {
+    let mut parking_lot = ParkingLot::new(3, 6);
+    parking_lot.occupy_space("A1");
+    assert_eq!(parking_lot.parking_spaces[0].state, State::Occupied);
+    parking_lot.release_space("A1");
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -65,11 +72,4 @@ mod tests {
         parking_lot.release_space("A1");
         assert_eq!(parking_lot.parking_spaces[0].state, State::Unoccupied);
     }
-}
-
-fn main() {
-    let mut parking_lot = ParkingLot::new(3, 6);
-    parking_lot.occupy_space("A1");
-    assert_eq!(parking_lot.parking_spaces[0].state, State::Occupied);
-    parking_lot.release_space("A1");
 }

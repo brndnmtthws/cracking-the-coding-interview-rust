@@ -82,7 +82,7 @@ where
     }
 }
 
-impl<'a, T> Iterator for Iter<T> {
+impl<T> Iterator for Iter<T> {
     type Item = NodeRef<T>;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -107,6 +107,13 @@ impl<T: Display> Display for LinkedList<T> {
         }
         write!(w, "]")
     }
+}
+
+fn main() {
+    let mut list = LinkedList::<String>::new();
+    list.append(String::from("item1"));
+    list.append(String::from("item2"));
+    let _list_partitioned = list.partition("hi".to_string());
 }
 
 #[cfg(test)]
@@ -134,11 +141,4 @@ mod tests {
         assert_eq!(iter.next().unwrap().borrow().data, 5);
         assert_eq!(iter.next().unwrap().borrow().data, 10);
     }
-}
-
-fn main() {
-    let mut list = LinkedList::<String>::new();
-    list.append(String::from("item1"));
-    list.append(String::from("item2"));
-    let _list_partitioned = list.partition("hi".to_string());
 }

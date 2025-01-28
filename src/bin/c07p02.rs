@@ -11,6 +11,7 @@ enum State {
     Unavailable,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 struct Employee {
     name: String,
@@ -18,6 +19,7 @@ struct Employee {
     state: State,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 struct Call {
     from: String,
@@ -47,6 +49,28 @@ impl CallCentre {
     }
 }
 
+fn main() {
+    let call_centre = CallCentre {
+        employees: vec![
+            Employee {
+                name: "Bob".to_string(),
+                title: Title::Respondent,
+                state: State::Unavailable,
+            },
+            Employee {
+                name: "Jane".to_string(),
+                title: Title::Manager,
+                state: State::Available,
+            },
+        ],
+    };
+    let _employee = call_centre
+        .dispatch_call(Call {
+            from: "Obama".to_string(),
+        })
+        .unwrap();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -74,26 +98,4 @@ mod tests {
             .unwrap();
         assert_eq!(employee.name, "Jane");
     }
-}
-
-fn main() {
-    let call_centre = CallCentre {
-        employees: vec![
-            Employee {
-                name: "Bob".to_string(),
-                title: Title::Respondent,
-                state: State::Unavailable,
-            },
-            Employee {
-                name: "Jane".to_string(),
-                title: Title::Manager,
-                state: State::Available,
-            },
-        ],
-    };
-    let _employee = call_centre
-        .dispatch_call(Call {
-            from: "Obama".to_string(),
-        })
-        .unwrap();
 }

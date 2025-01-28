@@ -1,7 +1,8 @@
-use rand::seq::SliceRandom;
-use rand::thread_rng;
 use std::cell::RefCell;
 use std::rc::Rc;
+
+use rand::rng;
+use rand::seq::SliceRandom;
 
 #[derive(PartialEq)]
 enum Side {
@@ -66,7 +67,7 @@ impl Puzzle {
                 final_pieces.push(pieces[w][h].clone());
             }
         }
-        let mut rng = thread_rng();
+        let mut rng = rng();
         final_pieces.shuffle(&mut rng);
         Puzzle {
             pieces: final_pieces,
@@ -179,6 +180,11 @@ impl Piece {
     }
 }
 
+fn main() {
+    let mut puzzle = Puzzle::new(10, 5);
+    puzzle.solve();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -195,9 +201,4 @@ mod tests {
             }
         }
     }
-}
-
-fn main() {
-    let mut puzzle = Puzzle::new(10, 5);
-    puzzle.solve();
 }

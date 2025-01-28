@@ -54,6 +54,12 @@ impl<T> ThreeInOne<T> {
     }
 }
 
+fn main() {
+    let mut three_in_one: ThreeInOne<i32> = ThreeInOne::new();
+    three_in_one.push(0, 1);
+    three_in_one.pop(0);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -78,10 +84,4 @@ mod tests {
         assert_eq!(three_in_one.pop(1).unwrap(), 8);
         assert_eq!(three_in_one.pop(0).unwrap(), 7);
     }
-}
-
-fn main() {
-    let mut three_in_one: ThreeInOne<i32> = ThreeInOne::new();
-    three_in_one.push(0, 1);
-    three_in_one.pop(0);
 }

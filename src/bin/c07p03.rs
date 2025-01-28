@@ -1,6 +1,7 @@
-use rand::seq::SliceRandom;
-use rand::thread_rng;
+use rand::rng;
+use rand::seq::IndexedMutRandom;
 
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 struct Song {
     title: String,
@@ -45,8 +46,8 @@ impl Jukebox {
     fn next_song(&mut self) -> Option<Song> {
         if self.queue.is_empty() {
             // pick random song
-            let mut rng = thread_rng();
-            self.catalogue.choose(&mut rng).cloned()
+            let mut rng = rng();
+            self.catalogue.choose_mut(&mut rng).cloned()
         } else {
             Some(self.queue.remove(0))
         }
@@ -54,25 +55,6 @@ impl Jukebox {
 
     fn enqueue_song(&mut self, song: Song) {
         self.queue.push(song);
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_jukebox() {
-        let mut jukebox = Jukebox::new();
-
-        // Get a shuffled song
-        let song = jukebox.next_song().unwrap();
-        assert_eq!(song.year.starts_with("20"), true);
-
-        // Add a song to the queue, and fetch it
-        jukebox.enqueue_song(jukebox.catalogue[1].clone());
-        let next_song = jukebox.next_song().unwrap();
-        assert_eq!(next_song.title, "Baby");
     }
 }
 
@@ -85,4 +67,22 @@ fn main() {
     // Add a song to the queue, and fetch it
     jukebox.enqueue_song(jukebox.catalogue[1].clone());
     let _next_song = jukebox.next_song().unwrap();
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_jukebox() {
+        let mut jukebox = Jukebox::new();
+
+        // Get a shuffled song
+        let song = jukebox.next_song().unwrap();
+        assert!(song.year.starts_with("20"));
+
+        // Add a song to the queue, and fetch it
+        jukebox.enqueue_song(jukebox.catalogue[1].clone());
+        let next_song = jukebox.next_song().unwrap();
+        assert_eq!(next_song.title, "Baby");
+    }
 }

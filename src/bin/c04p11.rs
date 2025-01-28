@@ -1,10 +1,11 @@
 extern crate rand;
 
-use rand::seq::SliceRandom;
-use rand::thread_rng;
 use std::cell::RefCell;
 use std::fmt::Display;
 use std::rc::Rc;
+
+use rand::rng;
+use rand::seq::IndexedMutRandom;
 
 type NodeRef<T> = Rc<RefCell<Node<T>>>;
 
@@ -38,38 +39,38 @@ where
             ret
         } else {
             let mut head = self.head.as_mut().unwrap().clone();
-            self.insert_at(&mut head, ret)
+            Self::insert_at(&mut head, ret)
         }
     }
 
-    fn insert_at(&mut self, parent_node: &mut NodeRef<T>, new_node: NodeRef<T>) -> NodeRef<T> {
+    fn insert_at(parent_node: &mut NodeRef<T>, new_node: NodeRef<T>) -> NodeRef<T> {
         if new_node.borrow().data < parent_node.borrow().data {
             if parent_node.borrow().left.is_some() {
                 let mut new_parent = parent_node.borrow_mut().left.as_mut().unwrap().clone();
-                self.insert_at(&mut new_parent, new_node)
+                Self::insert_at(&mut new_parent, new_node)
             } else {
                 parent_node.borrow_mut().left = Some(new_node.clone());
                 new_node
             }
         } else if parent_node.borrow().right.is_some() {
             let mut new_parent = parent_node.borrow_mut().right.as_mut().unwrap().clone();
-            self.insert_at(&mut new_parent, new_node)
+            Self::insert_at(&mut new_parent, new_node)
         } else {
             parent_node.borrow_mut().right = Some(new_node.clone());
             new_node
         }
     }
 
-    fn visit_from<F>(&self, parent_node: &NodeRef<T>, f: &mut F)
+    fn visit_from<F>(parent_node: &NodeRef<T>, f: &mut F)
     where
         F: FnMut(&NodeRef<T>),
     {
         f(parent_node);
         if let Some(left) = parent_node.borrow().left.as_ref() {
-            self.visit_from(left, f);
+            Self::visit_from(left, f);
         }
         if let Some(right) = parent_node.borrow().right.as_ref() {
-            self.visit_from(right, f);
+            Self::visit_from(right, f);
         }
     }
 
@@ -78,15 +79,15 @@ where
         F: FnMut(&NodeRef<T>),
     {
         if self.head.is_some() {
-            self.visit_from(self.head.as_ref().unwrap(), &mut f)
+            Self::visit_from(self.head.as_ref().unwrap(), &mut f)
         }
     }
 
     fn get_random_node(&self) -> NodeRef<T> {
         let mut nodes: Vec<NodeRef<T>> = vec![];
         self.visit_all(|v| nodes.push(v.clone()));
-        let mut rng = thread_rng();
-        nodes.choose(&mut rng).unwrap().clone()
+        let mut rng = rng();
+        nodes.choose_mut(&mut rng).unwrap().clone()
     }
 }
 
@@ -103,6 +104,14 @@ where
     }
 }
 
+fn main() {
+    let mut t1 = BinaryTree::<i32>::new();
+    t1.insert(2);
+    t1.insert(1);
+    t1.insert(3);
+    t1.get_random_node();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -114,17 +123,6 @@ mod tests {
         t1.insert(1);
         t1.insert(3);
 
-        assert_eq!(
-            vec![1, 2, 3].contains(&t1.get_random_node().borrow().data),
-            true
-        );
+        assert!([1, 2, 3].contains(&t1.get_random_node().borrow().data),);
     }
-}
-
-fn main() {
-    let mut t1 = BinaryTree::<i32>::new();
-    t1.insert(2);
-    t1.insert(1);
-    t1.insert(3);
-    t1.get_random_node();
 }

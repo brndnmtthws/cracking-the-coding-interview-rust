@@ -11,6 +11,10 @@ fn float_bits_to_str(n: f64) -> String {
     ret
 }
 
+fn main() {
+    float_bits_to_str(0.72);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -22,8 +26,4 @@ mod tests {
             "0011111111100111000010100011110101110000101000111101011100001010"
         );
     }
-}
-
-fn main() {
-    float_bits_to_str(0.72);
 }

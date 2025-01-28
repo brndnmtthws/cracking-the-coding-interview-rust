@@ -20,6 +20,10 @@ fn flip_bit_to_win(n: i32) -> i32 {
     ret
 }
 
+fn main() {
+    flip_bit_to_win(0b11_0001);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -29,8 +33,4 @@ mod tests {
         assert_eq!(flip_bit_to_win(0b1_1011), 5);
         assert_eq!(flip_bit_to_win(0b11_0001), 3);
     }
-}
-
-fn main() {
-    flip_bit_to_win(0b11_0001);
 }

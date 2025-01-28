@@ -6,6 +6,7 @@ struct User {
     password_hash: String,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 struct Book {
     title: String,
@@ -54,6 +55,14 @@ impl OnlineReader {
     }
 }
 
+fn main() {
+    let mut online_reader = OnlineReader::new();
+    let user = online_reader.add_user("Bob", "catscatscats");
+    let _book = online_reader
+        .add_book(&user, "Green Eggs and Ham", "Dr. Suess")
+        .unwrap();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -74,12 +83,4 @@ mod tests {
         assert_eq!(online_reader.libraries[&user].books.len(), 1);
         assert_eq!(online_reader.libraries.len(), 1);
     }
-}
-
-fn main() {
-    let mut online_reader = OnlineReader::new();
-    let user = online_reader.add_user("Bob", "catscatscats");
-    let _book = online_reader
-        .add_book(&user, "Green Eggs and Ham", "Dr. Suess")
-        .unwrap();
 }

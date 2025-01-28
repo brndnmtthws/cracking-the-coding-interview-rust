@@ -11,7 +11,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Setup Rust toolchain with caching
         uses: brndnmtthws/rust-action@v1
+        with:
+          cargo-packages: cargo-nextest
       - run: cargo build
-      - run: cargo test
-        env:
-          RUST_BACKTRACE: 1
+      - run: cargo clippy
+      - run: cargo nextest run

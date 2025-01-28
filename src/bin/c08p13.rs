@@ -35,6 +35,27 @@ fn get_max_stack_height(stack: &[BremBox], remaining_boxes: &[BremBox]) -> usize
     }
 }
 
+fn main() {
+    let stack = vec![
+        BremBox {
+            height: 1,
+            width: 1,
+            depth: 1,
+        },
+        BremBox {
+            height: 2,
+            width: 2,
+            depth: 2,
+        },
+        BremBox {
+            height: 3,
+            width: 3,
+            depth: 3,
+        },
+    ];
+    get_max_stack_height(&[], &stack);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -61,25 +82,4 @@ mod tests {
         let result = get_max_stack_height(&[], &stack);
         assert_eq!(result, 6);
     }
-}
-
-fn main() {
-    let stack = vec![
-        BremBox {
-            height: 1,
-            width: 1,
-            depth: 1,
-        },
-        BremBox {
-            height: 2,
-            width: 2,
-            depth: 2,
-        },
-        BremBox {
-            height: 3,
-            width: 3,
-            depth: 3,
-        },
-    ];
-    get_max_stack_height(&[], &stack);
 }
