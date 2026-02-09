@@ -5,5 +5,5 @@ authors = ["Brenden Matthews <brenden@brndn.io>"]
 edition = "2018"
 
 [dependencies]
-rand = "0.9"
+rand = "0.10"
 num = "0.4"
